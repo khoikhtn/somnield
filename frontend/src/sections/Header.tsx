@@ -1,9 +1,10 @@
 import Container from "../components/Container";
 import Button from "../components/Button";
 import NavItem from "../components/header/NavItem";
-import logo from '../assets/header/somnield_logo.png';
+import logo from '../assets/header/favicon.png';
 import hamburger from '../assets/header/hamburger.png';
 import { useState } from "react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const navLinks = [
   { text: "Home", isAqua: true },
@@ -19,14 +20,15 @@ const Header = () => {
   return (
     <>
       <Container className="max-w-[1700px] text-white">
-        <nav className="flex justify-between items-center">
-          {/* Logo */}
-          <div>
-            <img src={logo} alt="Logo" className="w-50 rounded-full"/>
+        <nav className="grid grid-cols-3 items-center">
+          {/* Left: Logo */}
+          <div className="flex items-center space-x-2">
+            <img src={logo} alt="Logo" className="w-12 h-12 rounded-full -translate-x-5" />
+            <span className="text-4xl tracking-[0.2em] -translate-y-1">SOMNIELD</span>
           </div>
 
-          {/* Navigation Menu */}
-          <div className="hidden xl:block">
+          {/* Center: Nav */}
+          <div className="hidden xl:flex justify-center">
             <ul className="flex gap-x-6">
               {navLinks.map((item, index) => (
                 <NavItem key={index} text={item.text} subMenu={item.subMenu} isAqua={item.isAqua} />
@@ -34,10 +36,11 @@ const Header = () => {
             </ul>
           </div>
 
-          {/* Button */}
-          <div className="flex items-center gap-x-6">
-            <Button text="Learn More" hasChevron={true} className="max-md:hidden" padding="px-1.5 py-3.5"/>
-            <img className="xl:hidden" src={hamburger} alt="" onClick={() => setIsDrawerOpen(true)}/>
+          {/* Right: Button */}
+          <div className="flex justify-end items-center gap-x-6">
+            {/* <Button text="Learn More" hasChevron={true} className="max-md:hidden" padding="px-1.5 py-3.5"/>
+            <img className="xl:hidden" src={hamburger} alt="" onClick={() => setIsDrawerOpen(true)} /> */}
+            <ConnectButton />
           </div>
         </nav>
       </Container>
