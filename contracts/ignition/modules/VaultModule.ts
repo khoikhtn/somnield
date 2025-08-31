@@ -5,7 +5,7 @@ export default buildModule("VaultModule", (m) => {
   // 1. Deploy stSTT
   const stSTT = m.contract("stSTT", []);
 
-  // 2. Deploy Vault with stSTT + Oracle (Hardhat account #1)
+  // 2. Deploy Vault with stSTT + Oracle (Hardhat account #0)
   const oracle = m.getParameter("oracle");
   const vault = m.contract("Vault", [stSTT, oracle]);
 

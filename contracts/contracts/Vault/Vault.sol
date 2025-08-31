@@ -2,15 +2,19 @@
 pragma solidity ^0.8.20;
 
 import "./stSTT.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Vault {
+contract Vault is Ownable {
     stSTT public stToken;
     uint256 public exchangeRate;
     address public oracle;
 
     uint256 public constant RATE_PRECISION = 1e18;
 
-    constructor(address _stSTT, address _oracle) {
+    event OracleUpdated(address indexed oldOracle, address indexed newOracle);
+    event ExchangeRateUpdated(uint256 oldRate, uint256 newRate);
+
+    constructor(address _stSTT, address _oracle) Ownable(msg.sender) {
         stToken = stSTT(_stSTT);
         exchangeRate = RATE_PRECISION;
         oracle = _oracle;
@@ -44,8 +48,12 @@ contract Vault {
 
     // The exchange rate will get updated periodically by the oracle
     function setExchangeRate(uint256 _rate) external onlyOracle {
-        
+        emit ExchangeRateUpdated(exchangeRate, _rate);
         exchangeRate = _rate;
+    }
 
+    function setOracle(address _newOracle) external onlyOwner {
+        emit OracleUpdated(oracle, _newOracle);
+        oracle = _newOracle;
     }
 }

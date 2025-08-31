@@ -7,10 +7,15 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract stSTT is ERC20, Ownable {
     address public vault;
 
+    event VaultSet(address indexed oldVault, address indexed newVault);
+    event Minted(address indexed to, uint256 amount);
+    event Burned(address indexed from, uint256 amount);
+
     constructor() ERC20("Staked STT", "stSTT") Ownable(msg.sender) {}
 
     function setVault(address _vault) external onlyOwner {
         require(_vault != address(0), "Invalid vault");
+        emit VaultSet(vault, _vault);
         vault = _vault;
     }
 
@@ -21,9 +26,11 @@ contract stSTT is ERC20, Ownable {
 
     function mint(address to, uint256 amount) external onlyVault {
         _mint(to, amount);
+        emit Minted(to, amount);
     }
 
     function burn(address from, uint256 amount) external onlyVault {
         _burn(from, amount);
+        emit Burned(from, amount);
     }
 }

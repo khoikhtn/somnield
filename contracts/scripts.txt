@@ -1,10 +1,10 @@
 # Setting keystore keys
 
-npx hardhat keystore get SHANNON_RPC_URL
-npx hardhat keystore get SHANNON_PRIVATE_KEY
+npx hardhat keystore set SHANNON_RPC_URL
+npx hardhat keystore set SHANNON_PRIVATE_KEY
 
 # Run ignition scripts
 
-npx hardhat ignition deploy ./ignition/modules/VaultModule.ts \
+npx hardhat ignition deploy ./ignition/modules/SplitterModule.ts \
 --network localhost \
 --parameters ignition/parameters.json

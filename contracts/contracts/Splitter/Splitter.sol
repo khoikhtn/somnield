@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "./PYPT.sol";
+import "./PTYT.sol";
 import "../Vault/stSTT.sol";
 import "../Vault/Vault.sol";
 
-contract Splitter {
+contract Splitter is Ownable {
     stSTT public stToken;
     PT public ptToken;
     YT public ytToken;
@@ -16,7 +16,9 @@ contract Splitter {
 
     uint256 public constant RATE_PRECISION = 1e18;
 
-    constructor(address _stSTT, address _vault, uint256 _maturity) payable {
+    event VaultUpdated(address indexed oldVault, address indexed newVault);
+
+    constructor(address _stSTT, address _vault, uint256 _maturity) payable Ownable(msg.sender) {
         require(_maturity > block.timestamp, "Maturity must be in the future");
 
         stToken = stSTT(_stSTT);
@@ -24,8 +26,8 @@ contract Splitter {
         maturity = _maturity;
         startRate = RATE_PRECISION;
 
-        string memory ptSymbol = string(abi.encodePacked("PT-", maturity));
-        string memory ytSymbol = string(abi.encodePacked("YT-", maturity));
+        string memory ptSymbol = string(abi.encodePacked("PT-stSTT-", maturity));
+        string memory ytSymbol = string(abi.encodePacked("YT-stSTT", maturity));
 
         // Deploy PT + YT contracts
         ptToken = new PT("Principle Token", ptSymbol);
@@ -85,6 +87,13 @@ contract Splitter {
 
         (bool sent, ) = msg.sender.call{value: totalYield}("");
         require(sent, "STT transfer failed");
+    }
+
+    function setVault(address _newVault) external onlyOwner {
+        require(_newVault != address(0), "Invalid vault");
+        address oldVault = address(vault);
+        vault = Vault(_newVault);
+        emit VaultUpdated(oldVault, _newVault);
     }
 
     /*----------------------
