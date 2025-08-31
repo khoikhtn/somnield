@@ -1,5 +1,6 @@
+import { useLocation } from "react-router-dom";
+
 import Container from "../components/Container";
-import Button from "../components/Button";
 import NavItem from "../components/header/NavItem";
 import logo from '../assets/header/favicon.png';
 import hamburger from '../assets/header/hamburger.png';
@@ -7,14 +8,17 @@ import { useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const navLinks = [
-  { text: "Home", isAqua: true },
-  { text: "About Us" },
-  { text: "Market" },
-  { text: "Blog", subMenu: ["Blog Grid", "Blog Grid Sidebar", "Blog Detail"] },
-  { text: "Pages", subMenu: ["FAQ's", "404", "Contact"] },
+  { text: "HOME", path: '/' },
+  { text: "GUIDE", path: '/guide' },
+  { text: "VAULT", path: '/vault' },
+  { text: "MARKET", path: '/markets' },
+
+  // { text: "Blog", subMenu: ["Blog Grid", "Blog Grid Sidebar", "Blog Detail"] },
+  // { text: "Pages", subMenu: ["FAQ's", "404", "Contact"] },
 ];
 
 const Header = () => {
+  const location = useLocation();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
@@ -29,17 +33,22 @@ const Header = () => {
 
           {/* Center: Nav */}
           <div className="hidden xl:flex justify-center">
-            <ul className="flex gap-x-6">
+            <ul className="flex gap-x-20">
               {navLinks.map((item, index) => (
-                <NavItem key={index} text={item.text} subMenu={item.subMenu} isAqua={item.isAqua} />
+                <NavItem 
+                  key={index} 
+                  text={item.text} 
+                  subMenu={undefined} 
+                  isAqua={location.pathname === item.path} 
+                  path={item.path}
+                />
               ))}
             </ul>
           </div>
 
           {/* Right: Button */}
           <div className="flex justify-end items-center gap-x-6">
-            {/* <Button text="Learn More" hasChevron={true} className="max-md:hidden" padding="px-1.5 py-3.5"/>
-            <img className="xl:hidden" src={hamburger} alt="" onClick={() => setIsDrawerOpen(true)} /> */}
+            <img className="xl:hidden" src={hamburger} alt="" onClick={() => setIsDrawerOpen(true)} />
             <ConnectButton />
           </div>
         </nav>
@@ -62,8 +71,9 @@ const Header = () => {
             {navLinks.map(item => (
               <NavItem 
                 text={item.text}
-                subMenu={item.subMenu}
+                subMenu={undefined}
                 isDrawer={true}
+                path={item.path}
               />
             ))}
           </ul>

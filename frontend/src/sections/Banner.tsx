@@ -93,7 +93,13 @@ const Banner = () => {
 
           {/* Crypto People */}
           <div className="bg-[#0C0C0D] text-white rounded-lg p-7 flex flex-col gap-4 w-full max-w-[300px] xl:max-w-[240px] items-center">
-            <Button text="Crypto People" padding="px-2 py-3.5"/>
+            <Button 
+              text="Get Started" 
+              hasChevron={true} 
+              className="mb-20 select-none" 
+              padding="px-2 py-3.5"
+              path="/about"
+            />
             <div className="text-lg text-center mt-2 mb-3">
               We’ve collaborated with over companies to create
             </div>
@@ -119,11 +125,14 @@ const Banner = () => {
 
         {/* Middle Section */}
         <div className="flex-2 p-4 flex flex-col items-center justify-center z-50 xl:py-[70px]">
-          <div className="text-white text-center text-3xl md:text-[55px] font-semibold mb-8">A reliable and safe platform for cryptocurrency trading</div>
-          <p className="text-white text-center mb-15 font-semibold">
-            We’ve collaborated with over 400 companies to create customized blockchain solutions for their businesses, and our growth shows no signs of slowing down.
+          <div className="text-white text-center text-3xl md:text-[50px] font-semibold mb-8">The Leading Yield Platform On Somnia Network</div>
+          
+          <p className="text-white text-center mb-15">
+            Unlock your yield potential on Somnia - the fastest blockchain in the world
           </p>
-          <Button text="Get Started Today" hasChevron={true} className="mb-20" padding="px-2 py-3.5"/>
+
+          <Button text="Get Started" hasChevron={true} className="mb-20 select-none" padding="px-2 py-3.5" path="/about"/>
+
           <div className="hidden sm:flex items-center w-5/7 min-w-[500px] px-10 py-4 text-white bg-dark-transparent opacity-90 rounded-3xl border-t border-l border-white">
             <div className="flex-3 flex flex-col gap-5">
               <p className="text-2xl">Crypto & Fintech Specialist</p>

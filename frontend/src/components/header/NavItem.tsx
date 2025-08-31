@@ -1,17 +1,26 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Desktop Navigation Item
-const NormalNavItem = ({ text, subMenu, isAqua }: { text: string; subMenu?: string[], isAqua: boolean }) => {
+const NormalNavItem = ({ text, subMenu, isAqua, path }: { text: string; subMenu?: string[], isAqua: boolean, path: string }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (path) {
+      navigate(path);
+    }
+  }
 
   return (
     <li 
-      className="relative cursor-pointer"
+      className="relative cursor-pointer select-none"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      onClick={handleClick}
     >
       <div className="flex items-center hover:text-aqua-custom transition-colors duration-300">
-        <span className={`${isAqua ? 'text-aqua-custom' : ''} font-semibold text-[17px]`}>{text}</span>
+        <span className={`${isAqua ? 'text-aqua-custom' : ''} text-[17px]`}>{text}</span>
         {subMenu && (
           <span className="ml-2 transition-transform duration-500">
             <i className="fa-solid fa-chevron-down"></i>
@@ -100,16 +109,18 @@ const NavItem = ({
   text, 
   subMenu, 
   isDrawer = false,
-  isAqua = false
+  isAqua = false,
+  path
 }: { 
   text: string, 
   subMenu?: string[], 
   isDrawer?: boolean,
-  isAqua?: boolean
+  isAqua?: boolean,
+  path: string
 }) => {
   return isDrawer 
     ? <DrawerNavItem text={text} subMenu={subMenu} />
-    : <NormalNavItem text={text} subMenu={subMenu} isAqua={isAqua}/>;
+    : <NormalNavItem text={text} subMenu={subMenu} isAqua={isAqua} path={path}/>;
 };
 
 export default NavItem;

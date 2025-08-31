@@ -1,5 +1,4 @@
 import bannerBg from './assets/banner/banner-bg.png'
-import Header from './sections/Header'
 import Banner from './sections/Banner'
 import TrackDP from './sections/TrackDP'
 import Trusted from './sections/Trusted'

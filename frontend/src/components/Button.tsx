@@ -1,20 +1,30 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface ButtonProps {
   text: string;
   hasChevron?: boolean | false;
   padding?: string;
   className?: string;
+  path?: string;
 }
 
-const Button = ({ text, hasChevron, padding, className = "" }: ButtonProps) => {
+const Button = ({ text, hasChevron, padding, className = "", path }: ButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (path) {
+      navigate(path);
+    }
+  }
 
   return (
     <div 
-      className={`rounded-3xl bg-white text-black text-sm inline-block ${className}`}
+      className={`rounded-3xl bg-white text-black text-sm inline-block cursor-pointer ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
     >
       <div className={`relative rounded-3xl h-full overflow-hidden ${padding}`}>
         <div className="w-full h-full  flex items-center justify-center px-4 z-20">
