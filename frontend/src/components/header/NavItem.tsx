@@ -14,7 +14,7 @@ const NormalNavItem = ({ text, subMenu, isAqua, path }: { text: string; subMenu?
 
   return (
     <li 
-      className="relative cursor-pointer select-none"
+      className="relative cursor-pointer"
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onClick={handleClick}
@@ -56,8 +56,15 @@ const NormalNavItem = ({ text, subMenu, isAqua, path }: { text: string; subMenu?
 };
 
 // Drawer Navigation Item
-const DrawerNavItem = ({ text, subMenu }: { text: string; subMenu?: string[] }) => {
+const DrawerNavItem = ({ text, subMenu, path }: { text: string; subMenu?: string[], path: string }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (path) {
+      navigate(path);
+    }
+  }
 
   const toggleSubMenu = () => {
     if (subMenu) {
@@ -71,7 +78,7 @@ const DrawerNavItem = ({ text, subMenu }: { text: string; subMenu?: string[] }) 
         className="flex justify-between items-center py-3  cursor-pointer border-b border-white/20"
         onClick={toggleSubMenu}
       >
-        <span className={`${isOpen ? 'text-blue-custom' : 'text-white-custom'} font-bold`}>{text}</span>
+        <span className={`${isOpen ? 'text-blue-custom' : 'text-white-custom'} font-bold`} onClick={handleClick}>{text}</span>
         {subMenu && (
           <div 
             className={`
@@ -119,7 +126,7 @@ const NavItem = ({
   path: string
 }) => {
   return isDrawer 
-    ? <DrawerNavItem text={text} subMenu={subMenu} />
+    ? <DrawerNavItem text={text} subMenu={subMenu} path={path}/>
     : <NormalNavItem text={text} subMenu={subMenu} isAqua={isAqua} path={path}/>;
 };
 

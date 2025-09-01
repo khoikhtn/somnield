@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import Container from "../components/Container";
 import NavItem from "../components/header/NavItem";
@@ -11,7 +11,7 @@ const navLinks = [
   { text: "HOME", path: '/' },
   { text: "GUIDE", path: '/guide' },
   { text: "VAULT", path: '/vault' },
-  { text: "MARKET", path: '/markets' },
+  { text: "MARKET", path: '/market' },
 
   // { text: "Blog", subMenu: ["Blog Grid", "Blog Grid Sidebar", "Blog Detail"] },
   // { text: "Pages", subMenu: ["FAQ's", "404", "Contact"] },
@@ -19,41 +19,63 @@ const navLinks = [
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const handleClick = () => {
+    navigate("/");
+  }
 
   return (
     <>
       <Container className="max-w-[1700px] text-white">
-        <nav className="grid grid-cols-3 items-center">
+        <nav className="grid grid-cols-2 xl:grid-cols-3 items-center">
           {/* Left: Logo */}
           <div className="flex items-center space-x-2">
-            <img src={logo} alt="Logo" className="w-12 h-12 rounded-full -translate-x-5" />
-            <span className="text-4xl tracking-[0.2em] -translate-y-1">SOMNIELD</span>
+            <img
+              src={logo}
+              alt="Logo"
+              className="w-12 h-12 rounded-full -translate-x-5 cursor-pointer"
+              onClick={handleClick}
+            />
+            <span
+              className="text-4xl tracking-[0.2em] -translate-y-1 cursor-pointer"
+              onClick={handleClick}
+            >
+              SOMNIELD
+            </span>
           </div>
 
-          {/* Center: Nav */}
+          {/* Center: Nav (only show on xl and above) */}
           <div className="hidden xl:flex justify-center">
             <ul className="flex gap-x-20">
               {navLinks.map((item, index) => (
-                <NavItem 
-                  key={index} 
-                  text={item.text} 
-                  subMenu={undefined} 
-                  isAqua={location.pathname === item.path} 
+                <NavItem
+                  key={index}
+                  text={item.text}
+                  subMenu={undefined}
+                  isAqua={location.pathname === item.path}
                   path={item.path}
                 />
               ))}
             </ul>
           </div>
 
-          {/* Right: Button */}
+          {/* Right: Button (always visible, flex-end) */}
           <div className="flex justify-end items-center gap-x-6">
-            <img className="xl:hidden" src={hamburger} alt="" onClick={() => setIsDrawerOpen(true)} />
+            <img
+              className="xl:hidden cursor-pointer"
+              src={hamburger}
+              alt=""
+              onClick={() => setIsDrawerOpen(true)}
+            />
             <ConnectButton />
           </div>
         </nav>
+
       </Container>
 
+      {/* Drawer section */}
       <div
         className={`
           fixed top-0 left-0 w-70 h-full bg-black text-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out

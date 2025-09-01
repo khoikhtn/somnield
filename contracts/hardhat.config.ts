@@ -7,7 +7,7 @@ import { configVariable } from "hardhat/config";
 const config: HardhatUserConfig = {
   plugins: [
     hardhatToolboxMochaEthersPlugin,
-    hardhatKeystorePlugin,
+    hardhatKeystorePlugin
   ],
   solidity: {
     profiles: {

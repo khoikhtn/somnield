@@ -21,7 +21,7 @@ const Button = ({ text, hasChevron, padding, className = "", path }: ButtonProps
 
   return (
     <div 
-      className={`rounded-3xl bg-white text-black text-sm inline-block cursor-pointer ${className}`}
+      className={`rounded-3xl bg-white text-black text-sm inline-block cursor-pointer select-none ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}

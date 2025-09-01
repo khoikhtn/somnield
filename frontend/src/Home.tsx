@@ -1,6 +1,7 @@
 import bannerBg from './assets/banner/banner-bg.png'
 import Banner from './sections/Banner'
-import TrackDP from './sections/TrackDP'
+import WhySomnield from './sections/WhySomnield'
+import VaultMarket from './sections/VaultMarket'
 import Trusted from './sections/Trusted'
 import BlockchainFirst from './sections/BlockchainFirst'
 import OneClick from './sections/OneClick'
@@ -17,7 +18,8 @@ const Home = () => {
           <Banner />
         </div>
       </div>
-      <TrackDP />
+      <WhySomnield />
+      <VaultMarket />
       <Trusted />
       <BlockchainFirst />
       <OneClick />

@@ -6,6 +6,7 @@
   --color-dark-custom: #141516;
   --color-white-custom: #FAFAFA;
   --color-dark-transparent: rgba(27, 27, 29, 0.2);
+  --font-asimovian: "Asimovian", sans-serif; 
 }
 
 @layer utilities {
@@ -30,19 +31,19 @@
 
   @keyframes glowingCircle {
     0%, 100% {
-      top: 25%;
-      left: 10%;
+      top: 0%;
+      left: 0%;
     }
     30% {
-      top: 30%;
+      top: 10%;
       left: 30%;
     }
     60% {
-      top: 45%;
+      top: 25%;
       left: 60%;
     }
     90% {
-      top: 20%;
+      top: 30%;
       left: 30%;
     }
   }
@@ -68,7 +69,7 @@
 }
 
 .animate-glowingCircle {
-  animation: glowingCircle 24s infinite ease-in-out;
+  animation: glowingCircle 15s infinite ease-in-out;
 }
 
 /* Background Colors */
@@ -107,4 +108,9 @@
 /* Video Border Radius */
 .video-border {
   border-radius: clamp(24px, 1.667vw, 64px);
+}
+
+/* Hide the blinking | caret */
+div, p, li {
+  caret-color: transparent;
 }
