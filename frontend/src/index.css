@@ -7,6 +7,7 @@
   --color-white-custom: #FAFAFA;
   --color-dark-transparent: rgba(27, 27, 29, 0.2);
   --font-asimovian: "Asimovian", sans-serif; 
+  --font-saira: "Saira", sans-serif;
 }
 
 @layer utilities {
@@ -87,12 +88,12 @@
 
 /* Custom Spacing */
 .stripe-first-padding {
-  padding: clamp(60px, 5.208vw, 160px) 0;
+  padding: clamp(60px, .208vw, 160px) 0;
 }
 
 /* Carousel Styling */
 .carousel > * {
-  flex: 0 0 100%;
+  flex: 0 0 130%;
 }
 
 /* Scrolling Animation */

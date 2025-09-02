@@ -19,7 +19,7 @@ const FeatureBox = ({ title, description, image, link, color }: FeatureBoxProps)
         />
       </div>
 
-      <h2 className={`text-3xl  font-asimovian mb-3 uppercase ${color}`}>{title}</h2>
+      <h2 className={`text-3xl font-asimovian mb-3 uppercase ${color}`}>{title}</h2>
 
       <p className="text-gray-400 mb-10">{description}</p>
 

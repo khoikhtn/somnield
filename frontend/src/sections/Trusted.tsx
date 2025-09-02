@@ -1,4 +1,4 @@
-import Container from '../components/Container';
+import { Container } from '../components';
 
 import dovetail from '../assets/trusted/dovetail.png';
 import livestorm from '../assets/trusted/livestorm.png';
@@ -22,17 +22,28 @@ const images = [
 
 const Trusted = () => {
   return (
-      <Container className='py-30' background='bg-black'>
-        <div className='flex flex-col items-center gap-15 bg-dark-custom text-white rounded-2xl px-4 py-7'>
-          <p className='text-3xl lg:text-5xl text-center'>Trusted By Over 1K Companies</p>
-          <div className='flex flex-wrap justify-between w-full gap-5 '>
-            {images.map(image => (
-              <img src={image.src} alt="" />
-            ))}
-          </div>
+    <Container className="py-30" widthClass="w-3/5" background="bg-black">
+
+      <div className="flex flex-col items-center gap-15 bg-dark-custom text-white rounded-2xl px-20 py-15">
+        <h2 className="text-3xl lg:text-5xl mb-5 text-center font-saira text-white/80">
+          Trusted By Over 100 Partners
+        </h2>
+
+        <div className="flex flex-wrap justify-center gap-8">
+          {images.map((image, idx) => (
+            <div
+              key={idx}
+              className="flex items-center justify-center w-40 h-20 rounded-lg border border-white/20 bg-black/50 p-4"
+            >
+              <img src={image.src} alt="" className="max-h-10 object-contain" />
+            </div>
+          ))}
         </div>
-      </Container>
-  )
-}
+      </div>
+
+    </Container>
+  );
+};
+
 
 export default Trusted

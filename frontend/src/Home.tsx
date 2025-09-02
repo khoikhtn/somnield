@@ -2,13 +2,9 @@ import bannerBg from './assets/banner/banner-bg.png'
 import Banner from './sections/Banner'
 import WhySomnield from './sections/WhySomnield'
 import VaultMarket from './sections/VaultMarket'
+import Stats from './sections/Stats'
 import Trusted from './sections/Trusted'
-import BlockchainFirst from './sections/BlockchainFirst'
-import OneClick from './sections/OneClick'
 import Stripe from './sections/Stripe'
-import BlockchainSecond from './sections/BlockchainSecond'
-import Media from './sections/Media'
-import HBW from './sections/HBW'
 
 const Home = () => {
   return (
@@ -20,13 +16,9 @@ const Home = () => {
       </div>
       <WhySomnield />
       <VaultMarket />
-      <Trusted />
-      <BlockchainFirst />
-      <OneClick />
+      <Stats />
       <Stripe />
-      <BlockchainSecond />
-      <Media />
-      <HBW />
+      <Trusted />
     </>
   )
 }

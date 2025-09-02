@@ -76,9 +76,9 @@ const Banner = () => {
 
         {/* Middle Section */}
         <div className="flex-2 p-4 flex flex-col items-center justify-center z-40 xl:py-[70px]">
-          <p className="text-center max-w-[800px] text-3xl md:text-[50px] font-semibold mb-8">The Leading Yield Platform On Somnia Blockchain</p>
+          <p className="text-center max-w-[800px] text-3xl md:text-[50px] font-saira leading-snug mb-8">The Leading Yield Platform On Somnia Blockchain</p>
           
-          <p className="text-center mb-15">
+          <p className="text-center text-gray-300 mb-15">
             Unlock your yield potential on Somnia - the fastest blockchain in the world
           </p>
 
