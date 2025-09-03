@@ -1,10 +1,5 @@
-import bannerBg from './assets/banner/banner-bg.png'
-import Banner from './sections/Banner'
-import WhySomnield from './sections/WhySomnield'
-import VaultMarket from './sections/VaultMarket'
-import Stats from './sections/Stats'
-import Trusted from './sections/Trusted'
-import Stripe from './sections/Stripe'
+import bannerBg from '@assets/banner/banner-bg.png'
+import { Banner, WhySomnield, VaultMarket, Stats, Trusted, Stripe } from '@sections'
 
 const Home = () => {
   return (

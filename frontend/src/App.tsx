@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './Home'
+import { Home, Vault } from './pages'
 import Layout from './Layout'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { wagmiConfig } from './wagmi'
@@ -17,10 +17,9 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="/about" element={<></>}></Route>
-                <Route path="/guide" element={<></>}></Route>
-                <Route path="/vault" element={<></>}></Route>
-                <Route path="/market" element={<></>}></Route>
+                <Route path="/guide" element={<></>} />
+                <Route path="/vault" element={<Vault />} />
+                <Route path="/market" element={<></>} />
               </Route>
             </Routes>
           </BrowserRouter>

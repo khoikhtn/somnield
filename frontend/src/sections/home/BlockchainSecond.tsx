@@ -1,5 +1,4 @@
-import Container from '../components/Container';
-import Button from '../components/Button';
+import { Container, Button } from "@components";
 
 const BlockchainFirst = () => {
   return (

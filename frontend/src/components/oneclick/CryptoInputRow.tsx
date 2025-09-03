@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
-import bitcoin from "../../assets/oneclick/bitcoin.png";
-import xrp_coin from "../../assets/oneclick/xrp_coin.png";
-import eth_coin from "../../assets/oneclick/eth_coin.png";
-import thr_coin from "../../assets/oneclick/tether_coin.png";
+import bitcoin from "@assets/oneclick/bitcoin.png";
+import xrp_coin from "@assets/oneclick/xrp_coin.png";
+import eth_coin from "@assets/oneclick/eth_coin.png";
+import thr_coin from "@assets/oneclick/tether_coin.png";
 
 interface CryptoInputRowProps {
   placeholder: string;

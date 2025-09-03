@@ -1,10 +1,8 @@
 import { useState } from "react";
-import Container from "../components/Container";
-import Button from "../components/Button";
-import CryptoInputRow from "../components/oneclick/CryptoInputRow";
-import bitcoin from "../assets/oneclick/bitcoin.png";
-import xrp_coin from "../assets/oneclick/xrp_coin.png";
-import credit_card from "../assets/oneclick/creditcard.png";
+import { Container, Button, CryptoInputRow } from "@components";
+import bitcoin from "@assets/oneclick/bitcoin.png";
+import xrp_coin from "@assets/oneclick/xrp_coin.png";
+import credit_card from "@assets/oneclick/creditcard.png";
 
 const OneClick = () => {
   const [isBuying, setIsBuying] = useState(true);

@@ -1,11 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
-
-import Container from "../components/Container";
-import NavItem from "../components/header/NavItem";
-import logo from '../assets/header/favicon.png';
-import hamburger from '../assets/header/hamburger.png';
+import { Container, NavItem } from "@components"
 import { useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+
+import logo from '@assets/header/favicon.png';
+import hamburger from '@assets/header/hamburger.png';
 
 const navLinks = [
   { text: "HOME", path: '/' },

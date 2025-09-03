@@ -1,5 +1,5 @@
-import Container from '../components/Container';
-import map from '../assets/blockchainfirst/map.png';
+import { Container } from "@components";
+import map from '@assets/blockchainfirst/map.png';
 
 const BlockchainFirst = () => {
   return (

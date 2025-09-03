@@ -1,0 +1,12 @@
+export { default as Banner } from "./Banner";
+export { default as BlockchainFirst } from "./BlockchainFirst";
+export { default as BlockchainSecond } from "./BlockchainSecond";
+export { default as HBW } from "./HBW";
+export { default as Media } from "./Media";
+export { default as OneClick } from "./OneClick";
+export { default as Stats } from "./Stats";
+export { default as Stripe } from "./Stripe";
+export { default as TrackDP } from "./TrackDP";
+export { default as Trusted } from "./Trusted";
+export { default as VaultMarket } from "./VaultMarket";
+export { default as WhySomnield } from "./WhySomnield";

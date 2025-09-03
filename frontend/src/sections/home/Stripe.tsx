@@ -1,8 +1,8 @@
-import stripe from '../assets/stripe/stripe.png';
-import binance from '../assets/stripe/binance.png';
-import coinbase from '../assets/stripe/coinbase.png';
-import paypal from '../assets/stripe/paypal.png';
-import coinmarketcap from '../assets/stripe/coinmarketcap.png';
+import stripe from '@assets/stripe/stripe.png';
+import binance from '@assets/stripe/binance.png';
+import coinbase from '@assets/stripe/coinbase.png';
+import paypal from '@assets/stripe/paypal.png';
+import coinmarketcap from '@assets/stripe/coinmarketcap.png';
 
 const Stripe = () => {
   return (

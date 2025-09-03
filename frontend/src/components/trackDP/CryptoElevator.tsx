@@ -1,9 +1,9 @@
 import CryptoRow from "./CryptoRow";
 
-import eth_coin from "../../assets/trackdp/eth_coin.png";
-import tether_coin from "../../assets/trackdp/tether_coin.png";
-import xrp_coin from "../../assets/trackdp/xrp_coin.png";
-import bitcoin from "../../assets/trackdp/bitcoin.png";
+import eth_coin from "@assets/trackdp/eth_coin.png";
+import tether_coin from "@assets/trackdp/tether_coin.png";
+import xrp_coin from "@assets/trackdp/xrp_coin.png";
+import bitcoin from "@assets/trackdp/bitcoin.png";
 
 const cryptos = [
   { image: eth_coin, coin: "Ethereum (ETH)", price: "$382.00" },

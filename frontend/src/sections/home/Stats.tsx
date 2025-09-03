@@ -1,5 +1,4 @@
-import { Container, GlowBackground } from "../components";
-import StatCard from "../components/stats/StatCard";
+import { Container, GlowBackground, StatCard } from "@components";
 
 const Stats = () => {
   return (

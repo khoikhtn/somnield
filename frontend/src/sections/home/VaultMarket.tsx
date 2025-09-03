@@ -1,7 +1,7 @@
-import { Container, GlowBackground } from "../components";
-import FeatureBox from "../components/vaultMarket/FeatureBox";
-import vault from "../assets/vaultmarket/vault.png";
-import market from "../assets/vaultmarket/market.png";
+import { Container, GlowBackground, FeatureBox } from "@components";
+
+import vault from "@assets/vaultmarket/vault.png";
+import market from "@assets/vaultmarket/market.png";
 import { motion } from "framer-motion";
 
 const VaultMarket = () => {

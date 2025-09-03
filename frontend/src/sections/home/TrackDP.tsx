@@ -1,14 +1,13 @@
-import Container from "../components/Container"
-import CryptoElevator from "../components/trackDP/CryptoElavator";
-import UserProfit from "../components/trackDP/UserProfit";
-import blue_dots from '../assets/trackdp/blue_dots.png';
-import user1 from '../assets/trackdp/user1.png';
-import user2 from '../assets/trackdp/user2.png';
-import user3 from '../assets/trackdp/user3.png';
-import bitcoin from "../assets/trackdp/bitcoin.png";
-import xrp_coin from "../assets/trackdp/xrp_coin.png";
-import green_line from "../assets/trackdp/green_line.png";
-import red_line from "../assets/trackdp/red_line.png";
+import { Container, CryptoElevator, UserProfit } from "@components"
+
+import blue_dots from '@assets/trackdp/blue_dots.png';
+import user1 from '@assets/trackdp/user1.png';
+import user2 from '@assets/trackdp/user2.png';
+import user3 from '@assets/trackdp/user3.png';
+import bitcoin from "@assets/trackdp/bitcoin.png";
+import xrp_coin from "@assets/trackdp/xrp_coin.png";
+import green_line from "@assets/trackdp/green_line.png";
+import red_line from "@assets/trackdp/red_line.png";
 
 const TrackDP = () => {
   return (

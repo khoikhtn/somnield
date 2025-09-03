@@ -1,13 +1,13 @@
-import { Container } from '../components';
+import { Container } from '@components';
 
-import dovetail from '../assets/trusted/dovetail.png';
-import livestorm from '../assets/trusted/livestorm.png';
-import linear from '../assets/trusted/linear.png';
-import graphy from '../assets/trusted/graphy.png';
-import fathom from '../assets/trusted/fathom.png';
-import heap from '../assets/trusted/heap.png';
-import insided from '../assets/trusted/insided.png';
-import planetscale from '../assets/trusted/planetscale.png';
+import dovetail from '@assets/trusted/dovetail.png';
+import livestorm from '@assets/trusted/livestorm.png';
+import linear from '@assets/trusted/linear.png';
+import graphy from '@assets/trusted/graphy.png';
+import fathom from '@assets/trusted/fathom.png';
+import heap from '@assets/trusted/heap.png';
+import insided from '@assets/trusted/insided.png';
+import planetscale from '@assets/trusted/planetscale.png';
 
 const images = [
   { src: dovetail },

@@ -20,7 +20,7 @@ const NormalNavItem = ({ text, subMenu, isAqua, path }: { text: string; subMenu?
       onClick={handleClick}
     >
       <div className="flex items-center hover:text-aqua-custom transition-colors duration-300">
-        <span className={`${isAqua ? 'text-aqua-custom' : ''} text-[17px]`}>{text}</span>
+        <span className={`${isAqua ? 'text-aqua-custom' : ''} text-[17px] font-saira`}>{text}</span>
         {subMenu && (
           <span className="ml-2 transition-transform duration-500">
             <i className="fa-solid fa-chevron-down"></i>
