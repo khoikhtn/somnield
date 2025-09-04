@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+
 interface PortfolioProps {
   sttBalance: number
   stSttBalance: number
@@ -22,7 +24,12 @@ const Portfolio = ({
   const shortAddress = `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
 
   return (
-    <div className="flex-3 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="flex-3 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800"
+    >
       
       {/* Header */}
       <h2 className="text-3xl font-semibold text-white/80 mb-2">Your Portfolio</h2>
@@ -71,7 +78,7 @@ const Portfolio = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

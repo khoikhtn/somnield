@@ -3,9 +3,6 @@ import { Container, Portfolio, Stats } from "@components";
 const PortfolioStats = () => {
   return (
     <Container className="relative" background="bg-black">
-
-      {/* <GlowBackground /> */}
-
       <div className="flex flex-col xl:flex-row gap-10">
           <Portfolio
             sttBalance={1200}
@@ -22,6 +19,7 @@ const PortfolioStats = () => {
             exchangeRate={1.52}
             estimatedApr={4.85}
           />
+
       </div>
     </Container>
   )

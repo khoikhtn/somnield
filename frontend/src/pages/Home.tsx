@@ -1,5 +1,5 @@
 import bannerBg from '@assets/banner/banner-bg.png'
-import { Banner, WhySomnield, VaultMarket, Stats, Trusted, Stripe } from '@sections'
+import { Banner, WhySomnield, VaultMarket, Stats, Trusted, Stripe, OneClick } from '@sections'
 
 const Home = () => {
   return (
@@ -14,6 +14,7 @@ const Home = () => {
       <Stats />
       <Stripe />
       <Trusted />
+      <OneClick />
     </>
   )
 }

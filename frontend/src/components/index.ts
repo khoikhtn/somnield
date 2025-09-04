@@ -5,6 +5,7 @@ export { default as GlowBackground } from "./GlowBackground";
 export * from "./header";
 export * from "./oneclick";
 export * from "./portfolioStats";
+export * from "./positionSplitting";
 export * from "./stats"
 export * from "./trackDP"
 export * from "./vaultMarket"

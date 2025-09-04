@@ -1,10 +1,11 @@
-import { VaultTitle, PortfolioStats } from "@sections";
+import { VaultTitle, PortfolioStats, TransactionBox } from "@sections";
 
 const Vault = () => {
   return (
     <>
       <VaultTitle />
       <PortfolioStats />
+      <TransactionBox />
     </>
   )
 }
