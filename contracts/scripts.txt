@@ -8,3 +8,4 @@ npx hardhat keystore set SHANNON_PRIVATE_KEY
 npx hardhat ignition deploy ./ignition/modules/SplitterModule.ts \
 --network localhost \
 --parameters ignition/parameters.json
+--reset

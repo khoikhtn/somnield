@@ -1,10 +1,11 @@
-import { MarketTitle, PositionSplitting } from "@sections"
+import { MarketTitle, PositionSplitting, Pools } from "@sections"
 
 const Market = () => {
   return (
     <>
       <MarketTitle />
       <PositionSplitting />
+      <Pools />
     </>
   )
 }

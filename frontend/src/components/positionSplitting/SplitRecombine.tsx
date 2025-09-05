@@ -1,10 +1,16 @@
 import { useState, useRef, useEffect } from "react";
-import ststt from "@assets/splitrecombine/ststt.png"; // temp logo for stSTT
+import { motion } from "framer-motion";
+
+import ststt from "@assets/splitrecombine/ststt.png";
 
 interface TokenOption {
   image: string;
   coin: string;
 }
+
+const tokens: TokenOption[] = [
+  { image: ststt, coin: "stSTT" },
+];
 
 const SplitRecombine = () => {
   const [mode, setMode] = useState<"split" | "recombine">("split");
@@ -54,10 +60,14 @@ const SplitRecombine = () => {
       : "0 stSTT";
 
   let inputToken = mode === "split" ? selectedToken.coin : "PT + YT";
-  let outputToken = mode === "split" ? "PT & YT" : "stSTT";
 
   return (
-    <div className="flex-3 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800">
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+      className="flex-2 flex flex-col font-saira gap-4 p-8 rounded-2xl bg-gray-900/70 border border-gray-800"
+    >
       {/* Header */}
       <h2 className="text-3xl font-semibold text-white/80 mb-2">
         Split & Recombine
@@ -159,13 +169,8 @@ const SplitRecombine = () => {
       <button className="mt-4 py-3 rounded-xl bg-purple-500 text-white font-semibold hover:bg-purple-600 transition-colors">
         {mode === "split" ? "Split" : "Recombine"}
       </button>
-    </div>
+    </motion.div>
   );
 };
 
 export default SplitRecombine;
-
-// Token list (easy to extend later)
-const tokens: TokenOption[] = [
-  { image: ststt, coin: "stSTT" },
-];

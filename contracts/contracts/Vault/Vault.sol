@@ -28,7 +28,7 @@ contract Vault is Ownable {
     function deposit() external payable {
         require(msg.value > 0, "No STT sent");
 
-        uint256 amountToMint = (msg.value * 1e18) / exchangeRate;
+        uint256 amountToMint = (msg.value * RATE_PRECISION) / exchangeRate;
 
         stToken.mint(msg.sender, amountToMint);
     }

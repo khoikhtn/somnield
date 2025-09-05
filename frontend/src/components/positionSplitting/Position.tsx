@@ -1,5 +1,7 @@
 import { useState } from "react";
-import PositionBox from "./PositionBox";
+import { motion } from "framer-motion";
+
+import PositionData from "./PositionData";
 
 const Position = () => {
   const [activeTab, setActiveTab] = useState<"lp" | "pt" | "yt">("lp");
@@ -17,9 +19,16 @@ const Position = () => {
   };
 
   return (
-    <div className="flex-3 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="flex-3 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800"
+    >
       {/* Header */}
-      <h2 className="text-3xl font-semibold text-white/80 mb-2">Your Positions</h2>
+      <h2 className="text-3xl font-semibold text-white/80 mb-2">
+        Your Positions
+      </h2>
       <p className="text-gray-400 text-sm mb-6">
         View and manage your active positions
       </p>
@@ -42,8 +51,8 @@ const Position = () => {
       </div>
 
       {/* Content */}
-      <PositionBox data={getData()} />
-    </div>
+      <PositionData data={getData()} tab={activeTab} />
+    </motion.div>
   );
 };
 
@@ -71,14 +80,14 @@ const ptPositions = [
   {
     title: "PT Dec-2025",
     Balance: "150 PT",
-    Maturity: "Dec 31, 2025",
+    maturityDate: "2025-12-31",
     "Entry Price": "0.93 stSTT",
     "Fixed Yield": "7.5% APY",
   },
   {
     title: "PT Jun-2026",
     Balance: "80 PT",
-    Maturity: "Jun 30, 2026",
+    maturityDate: "2026-06-30",
     "Entry Price": "0.90 stSTT",
     "Fixed Yield": "11.1% APY",
   },
@@ -88,12 +97,14 @@ const ytPositions = [
   {
     title: "YT Dec-2025",
     Balance: "95 YT",
+    maturityDate: "2025-12-31",
     "Implied APY": "6.4%",
     "Unrealized PnL": "+$45",
   },
   {
     title: "YT Jun-2026",
     Balance: "50 YT",
+    maturityDate: "2026-06-30",
     "Implied APY": "5.9%",
     "Unrealized PnL": "-$12",
   },

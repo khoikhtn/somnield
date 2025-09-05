@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Home, Vault, Market } from './pages'
+import { Home, Vault, Market, PoolDetail } from './pages'
 import Layout from './Layout'
 import { ScrollToTop } from './utils'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
@@ -22,6 +22,7 @@ const App = () => {
                 <Route path="/guide" element={<></>} />
                 <Route path="/vault" element={<Vault />} />
                 <Route path="/market" element={<Market />} />
+                <Route path="pools/:pair/:address" element={<PoolDetail />} />
               </Route>
             </Routes>
           </BrowserRouter>
