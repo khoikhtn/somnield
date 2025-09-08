@@ -5,11 +5,7 @@ const PortfolioStats = () => {
     <Container className="relative" background="bg-black">
       <div className="flex flex-col xl:flex-row gap-10">
           <Portfolio
-            sttBalance={1200}
-            stSttBalance={800}
-            exchangeRate={1.5}
             sttPriceUsd={1.2}
-            walletAddress="0x1234567890abcdef1234567890abcdef12345678"
           />
 
           <Stats

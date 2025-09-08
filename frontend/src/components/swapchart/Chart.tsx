@@ -24,9 +24,9 @@ const Chart = () => {
 
   return (
     <div className="flex-2 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800">
-      <h2 className="text-2xl font-semibold text-white/80">Pool Metrics</h2>
-      <p className="text-gray-400 text-sm">
-        Mock chart of <span className="text-cyan-400">{base.toUpperCase()} / {quote.toUpperCase()}</span> pool
+      <h2 className="text-3xl font-semibold text-white/80 mb-2">Pool Metrics</h2>
+      <p className="text-gray-400 text-sm mb-6">
+        Live metrics tracking <span className="text-cyan-400">{base.toUpperCase()} / {quote.toUpperCase()}</span> pool performance.
       </p>
 
       <div className="w-full h-72">

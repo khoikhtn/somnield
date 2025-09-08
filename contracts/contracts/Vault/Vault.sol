@@ -47,13 +47,18 @@ contract Vault is Ownable {
     }
 
     // The exchange rate will get updated periodically by the oracle
-    function setExchangeRate(uint256 _rate) external onlyOracle {
-        emit ExchangeRateUpdated(exchangeRate, _rate);
-        exchangeRate = _rate;
+    function setExchangeRate(uint256 _newExchangeRate) external onlyOracle {
+        emit ExchangeRateUpdated(exchangeRate, _newExchangeRate);
+        exchangeRate = _newExchangeRate;
     }
 
     function setOracle(address _newOracle) external onlyOwner {
         emit OracleUpdated(oracle, _newOracle);
         oracle = _newOracle;
     }
+
+    // Allow contract to receive ETH
+    receive() external payable {}
+
+    fallback() external payable {}
 }

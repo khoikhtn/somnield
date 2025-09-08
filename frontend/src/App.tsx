@@ -5,7 +5,7 @@ import { ScrollToTop } from './utils'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { wagmiConfig } from './wagmi'
 import { WagmiProvider } from 'wagmi'
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { RainbowKitProvider, darkTheme  } from '@rainbow-me/rainbowkit'
 
 const queryClient = new QueryClient();
 
@@ -13,7 +13,12 @@ const App = () => {
   return (
     <WagmiProvider config={wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
+        <RainbowKitProvider 
+          modalSize="compact" 
+          theme={darkTheme({
+            borderRadius: 'medium',
+          })}
+        >
           <BrowserRouter>
             <ScrollToTop />
             <Routes>

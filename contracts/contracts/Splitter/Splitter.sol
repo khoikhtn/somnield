@@ -18,7 +18,7 @@ contract Splitter is Ownable {
 
     event VaultUpdated(address indexed oldVault, address indexed newVault);
 
-    constructor(address _stSTT, address _vault, uint256 _maturity) payable Ownable(msg.sender) {
+    constructor(address _stSTT, address payable _vault, uint256 _maturity) payable Ownable(msg.sender) {
         require(_maturity > block.timestamp, "Maturity must be in the future");
 
         stToken = stSTT(_stSTT);
@@ -89,7 +89,7 @@ contract Splitter is Ownable {
         require(sent, "STT transfer failed");
     }
 
-    function setVault(address _newVault) external onlyOwner {
+    function setVault(address payable _newVault) external onlyOwner {
         require(_newVault != address(0), "Invalid vault");
         address oldVault = address(vault);
         vault = Vault(_newVault);

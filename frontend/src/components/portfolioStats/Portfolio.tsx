@@ -1,27 +1,41 @@
 import { motion } from "framer-motion";
+import { useAccount, useBalance } from "wagmi";
+import { getStSttBalance, getVaultExchangeRate } from "@hooks/read"
 
 interface PortfolioProps {
-  sttBalance: number
-  stSttBalance: number
-  exchangeRate: number
   sttPriceUsd: number
-  walletAddress: string
 }
 
 const Portfolio = ({
-  sttBalance,
-  stSttBalance,
-  exchangeRate,
   sttPriceUsd,
-  walletAddress,
 }: PortfolioProps) => {
+
+  // Wallet address
+  const { address: walletAddress } = useAccount();
+  const shortAddress = walletAddress
+    ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
+    : "Not connected";
+
+  // STT balance
+  const { data: sttBalanceData } = useBalance({ address: walletAddress })
+  const sttBalance = Number(sttBalanceData?.formatted ?? 0);
+  
+  // stSTT balance 
+  const stSTTBalanceRaw = getStSttBalance(walletAddress)
+  console.log(stSTTBalanceRaw)
+  const stSttBalance = stSTTBalanceRaw ? Number(stSTTBalanceRaw) / 1e18 : 0
+
+  // Exchange rate
+  const exchangeRateRaw = getVaultExchangeRate()
+  const exchangeRate = exchangeRateRaw ? Number(exchangeRateRaw) / 1e18 : 1
+  
+  console.log(exchangeRate)
+
+  // 
   const stSttEquivalent = stSttBalance * exchangeRate
   const totalAssetsStt = sttBalance + stSttEquivalent
   const totalAssetsUsd = totalAssetsStt * sttPriceUsd
-  const yieldAccrued = stSttEquivalent - stSttBalance
-
-  // shorten address for UI: 0x1234...abcd
-  const shortAddress = `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
+  const yieldAccrued = stSttEquivalent - stSttBalance  
 
   return (
     <motion.div

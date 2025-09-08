@@ -46,7 +46,7 @@ const WhySomnield = () => {
             show: {
               opacity: 1,
               y: 0,
-              transition: { staggerChildren: 0.8 },
+              transition: { staggerChildren: 0.5 },
             },
           }}
         >

@@ -13,7 +13,9 @@
       "@components/*": ["src/components/*"],
       "@components": ["src/components"],
       "@sections": ["src/sections"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@contracts": ["src/contracts"],
+      "@hooks/*": ["src/hooks/*"]
     },
 
     /* Bundler mode */

@@ -3,9 +3,35 @@
 npx hardhat keystore set SHANNON_RPC_URL
 npx hardhat keystore set SHANNON_PRIVATE_KEY
 
+---------------------------------------------------------------------
+
 # Run ignition scripts
 
-npx hardhat ignition deploy ./ignition/modules/SplitterModule.ts \
+npx hardhat ignition deploy ./ignition/modules/SomnieldModule.ts \
 --network localhost \
---parameters ignition/parameters.json
+--parameters ignition/parameters.json \
 --reset
+
+---------------------------------------------------------------------
+
+# Read PT and YT addresses (Copy Vault and Splitte's address into .env first)
+
+npx hardhat run scripts/getPTYTaddresses.ts --network localhost
+
+---------------------------------------------------------------------
+
+# Read Vault and Splitter's balance
+
+npx hardhat run scripts/balanceChecker.ts --network localhost
+
+---------------------------------------------------------------------
+
+# Fund Vault and Splitter contract with native token
+
+npx hardhat run scripts/fundVaultSplitter.ts --network localhost
+
+---------------------------------------------------------------------
+
+# Export ABI to frontend
+
+npx hardhat run scripts/exportABIs.ts

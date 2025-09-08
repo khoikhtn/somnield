@@ -18,6 +18,9 @@
     "typescript": "~5.8.0"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.4.0"
+    "@openzeppelin/contracts": "^5.4.0",
+    "dotenv": "^17.2.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
   }
 }
