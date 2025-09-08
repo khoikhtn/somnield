@@ -12,7 +12,6 @@ const PortfolioStats = () => {
             tvl={1200000}
             stakers={5400}
             stSttMarketCap={850000}
-            exchangeRate={1.52}
             estimatedApr={4.85}
           />
 

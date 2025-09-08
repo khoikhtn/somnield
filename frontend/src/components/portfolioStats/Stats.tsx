@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
+import { getVaultExchangeRate } from "@hooks/read"
 
 interface StatsProps {
   tvl: number
   stakers: number
   stSttMarketCap: number
-  exchangeRate: number
   estimatedApr: number
 }
 
@@ -12,9 +12,12 @@ const Stats = ({
   tvl,
   stakers,
   stSttMarketCap,
-  exchangeRate,
   estimatedApr,
 }: StatsProps) => {
+
+  // Exchange rate
+  const exchangeRateRaw = getVaultExchangeRate()
+  const exchangeRate = exchangeRateRaw ? Number(exchangeRateRaw) / 1e18 : 1
 
   return (
     <motion.div 

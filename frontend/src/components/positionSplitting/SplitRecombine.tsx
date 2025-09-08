@@ -1,6 +1,10 @@
 import { useState, useRef, useEffect } from "react";
+import { useAccount } from "wagmi"
 import { motion } from "framer-motion";
+import { toast } from "react-hot-toast"
 
+import { getStSttBalance, getPTBalance, getYTBalance } from "@hooks/read"
+import { useApproveStSTT, useSplit, useRecombine } from "@hooks/write"
 import ststt from "@assets/splitrecombine/ststt.png";
 
 interface TokenOption {
@@ -15,20 +19,71 @@ const tokens: TokenOption[] = [
 const SplitRecombine = () => {
   const [mode, setMode] = useState<"split" | "recombine">("split");
   const [amount, setAmount] = useState<string>("");
+  const { address: walletAddress } = useAccount()
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedToken, setSelectedToken] = useState<TokenOption>({
-    image: ststt,
-    coin: "stSTT",
-  });
+  const [selectedToken, setSelectedToken] = useState<TokenOption>(tokens[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  // --- Hooks for contract write ---
+  const { approve, isPending: isApprovePending, isSuccess: isApproveSuccess } = useApproveStSTT()
+  const { split, isPending: isSplitPending, isLoading: isSplitLoading, isSuccess: isSplitSuccess } = useSplit()
+  const { recombine, isPending: isRecombinePending, isLoading: isRecombineLoading, isSuccess: isRecombineSuccess } = useRecombine()
 
-  const handleSelect = (item: TokenOption) => {
-    setSelectedToken(item);
-    setIsOpen(false);
-  };
+  // Balances
+  const { data: stSTTBalanceRaw, refetch: refetchStSttBalance } = getStSttBalance(walletAddress)
+  const stSttBalance = stSTTBalanceRaw ? Number(stSTTBalanceRaw) / 1e18 : 0
+  
+  const { data: PTBalanceRaw, refetch: refetchPTBalance } = getPTBalance(walletAddress)
+  const PTBalance = PTBalanceRaw ? Number(PTBalanceRaw) / 1e18 : 0
+
+  const { data: YTBalanceRaw, refetch: refetchYTBalance } = getYTBalance(walletAddress)
+  const YTBalance = YTBalanceRaw ? Number(YTBalanceRaw) / 1e18 : 0
+
+  const maxRecombine = Math.min(PTBalance, YTBalance)
+  const maxBalance = mode === "split" ? stSttBalance : maxRecombine
+
+  const inputAmount = parseFloat(amount);
+
+  const isDisabled =
+    !amount || isNaN(inputAmount) || inputAmount <= 0 || inputAmount > maxBalance
+
+  // Preview result
+  const result =
+    !isNaN(inputAmount) && inputAmount > 0
+      ? mode === "split"
+        ? `${inputAmount} PT + ${inputAmount} YT`
+        : `${inputAmount} stSTT`
+      : mode === "split"
+      ? "0 PT + 0 YT"
+      : "0 stSTT";
+
+  let inputToken = mode === "split" ? selectedToken.coin : "PT + YT";
+
+  const handleConfirm = async () => {
+    try {
+      const amountWei = BigInt(Math.floor(inputAmount * 1e18))
+
+      if (mode === "split") {
+        // Approve
+        await approve(amountWei)
+        toast.loading("Approving stSTT...")
+
+        if (isApproveSuccess) {
+          toast.dismiss()
+          toast.success("Approval successful")
+        }
+
+        // Split
+        await split(amountWei)
+      } else {
+        await recombine(amountWei)
+      }
+    } catch (err) {
+      console.error("Transaction failed:", err)
+      toast.error("Transaction failed")
+    }
+  }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -48,18 +103,29 @@ const SplitRecombine = () => {
     };
   }, [isOpen]);
 
-  const exchangeRate = 1.25; // dummy rate
-  const amt = parseFloat(amount);
-  const result =
-    !isNaN(amt) && amt > 0
-      ? mode === "split"
-        ? `${amt} PT + ${amt} YT`
-        : amt * exchangeRate + " stSTT"
-      : mode === "split"
-      ? "0 PT + 0 YT"
-      : "0 stSTT";
+  const isSubmitting =
+    (mode === "split" && (isSplitPending || isSplitLoading || isApprovePending)) ||
+    (mode === "recombine" && (isRecombinePending || isRecombineLoading))
 
-  let inputToken = mode === "split" ? selectedToken.coin : "PT + YT";
+  useEffect(() => {
+    if (isSplitSuccess) {
+      toast.success("Split successful!")
+      refetchStSttBalance()
+      refetchPTBalance()
+      refetchYTBalance()
+      setAmount("")
+    }
+  }, [isSplitSuccess])
+
+  useEffect(() => {
+    if (isRecombineSuccess) {
+      toast.success("Recombine successful!")
+      refetchStSttBalance()
+      refetchPTBalance()
+      refetchYTBalance()
+      setAmount("")
+    }
+  }, [isRecombineSuccess])
 
   return (
     <motion.div 
@@ -106,7 +172,7 @@ const SplitRecombine = () => {
         <div
           ref={dropdownRef}
           className="bg-gray-800/60 rounded-xl p-4 flex justify-between items-center relative cursor-pointer"
-          onClick={toggleDropdown}
+          onClick={() => setIsOpen(!isOpen)}
         >
           <div className="flex items-center gap-3">
             <img
@@ -133,7 +199,10 @@ const SplitRecombine = () => {
                 <div
                   key={item.coin}
                   className="flex items-center gap-3 px-4 py-3 hover:bg-purple-500/20 cursor-pointer"
-                  onClick={() => handleSelect(item)}
+                  onClick={() => {
+                    setSelectedToken(item);
+                    setIsOpen(false);
+                  }}
                 >
                   <img src={item.image} alt={item.coin} className="w-8 h-8" />
                   <span className="text-white font-medium">{item.coin}</span>
@@ -153,9 +222,13 @@ const SplitRecombine = () => {
             placeholder="Enter amount"
             value={amount}
             min={0}
+            max={maxBalance}
             onChange={(e) => setAmount(e.target.value)}
             className="flex-1 bg-transparent text-white text-lg outline-none font-medium"
           />
+          <span className="text-gray-500 text-xs">
+            Balance: {maxBalance.toLocaleString()} {inputToken}
+          </span>
         </div>
 
         {/* Output */}
@@ -166,8 +239,16 @@ const SplitRecombine = () => {
       </div>
 
       {/* Action */}
-      <button className="mt-4 py-3 rounded-xl bg-purple-500 text-white font-semibold hover:bg-purple-600 transition-colors">
-        {mode === "split" ? "Split" : "Recombine"}
+      <button
+        disabled={isDisabled || isSubmitting}
+        onClick={handleConfirm}
+        className={`mt-4 py-3 rounded-xl font-semibold transition-colors ${
+          isDisabled
+            ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+            : "bg-purple-500 text-white hover:bg-purple-600"
+        }`}
+      >
+        {isSubmitting ? "Submitting..." : mode === "split" ? "Split" : "Recombine"}
       </button>
     </motion.div>
   );

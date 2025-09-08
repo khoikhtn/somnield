@@ -1,41 +1,54 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { useAccount, useBalance } from "wagmi";
-import { getStSttBalance, getVaultExchangeRate } from "@hooks/read"
+import { useAccount } from "wagmi";
+import { getSTTBalance, getStSttBalance, getVaultExchangeRate } from "@hooks/read";
+import { useDeposit, useWithdraw } from "@hooks/write";
 
 interface PortfolioProps {
-  sttPriceUsd: number
+  sttPriceUsd: number;
 }
 
-const Portfolio = ({
-  sttPriceUsd,
-}: PortfolioProps) => {
-
+const Portfolio = ({ sttPriceUsd }: PortfolioProps) => {
   // Wallet address
   const { address: walletAddress } = useAccount();
   const shortAddress = walletAddress
     ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`
     : "Not connected";
 
-  // STT balance
-  const { data: sttBalanceData } = useBalance({ address: walletAddress })
+  // STT, stSTT balances & Exchange rate
+  const { data: sttBalanceData, refetch: refetchSttBalance } = getSTTBalance(walletAddress);
+  const { data: stSttBalanceRaw, refetch: refetchStSttBalance } = getStSttBalance(walletAddress);
+  const { data: exchangeRateRaw, refetch: refetchExchangeRate } = getVaultExchangeRate();
+
+  // Hooks to detect deposit/withdraw success
+  const { isSuccess: isDepositSuccess } = useDeposit();
+  const { isSuccess: isWithdrawSuccess } = useWithdraw();
+
+  // Refetch balances when tx succeeds
+  useEffect(() => {
+    if (isDepositSuccess || isWithdrawSuccess) {
+      refetchSttBalance();
+      refetchStSttBalance();
+      refetchExchangeRate();
+    }
+  }, [
+    isDepositSuccess,
+    isWithdrawSuccess,
+    refetchSttBalance,
+    refetchStSttBalance,
+    refetchExchangeRate,
+  ]);
+
+  // Parse values
   const sttBalance = Number(sttBalanceData?.formatted ?? 0);
-  
-  // stSTT balance 
-  const stSTTBalanceRaw = getStSttBalance(walletAddress)
-  console.log(stSTTBalanceRaw)
-  const stSttBalance = stSTTBalanceRaw ? Number(stSTTBalanceRaw) / 1e18 : 0
+  const stSttBalance = stSttBalanceRaw ? Number(stSttBalanceRaw) / 1e18 : 0;
+  const exchangeRate = exchangeRateRaw ? Number(exchangeRateRaw) / 1e18 : 1;
 
-  // Exchange rate
-  const exchangeRateRaw = getVaultExchangeRate()
-  const exchangeRate = exchangeRateRaw ? Number(exchangeRateRaw) / 1e18 : 1
-  
-  console.log(exchangeRate)
-
-  // 
-  const stSttEquivalent = stSttBalance * exchangeRate
-  const totalAssetsStt = sttBalance + stSttEquivalent
-  const totalAssetsUsd = totalAssetsStt * sttPriceUsd
-  const yieldAccrued = stSttEquivalent - stSttBalance  
+  // Derived values
+  const stSttEquivalent = stSttBalance * exchangeRate;
+  const totalAssetsStt = sttBalance + stSttEquivalent;
+  const totalAssetsUsd = totalAssetsStt * sttPriceUsd;
+  const yieldAccrued = stSttEquivalent - stSttBalance;
 
   return (
     <motion.div
@@ -44,10 +57,13 @@ const Portfolio = ({
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="flex-3 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800"
     >
-      
       {/* Header */}
-      <h2 className="text-3xl font-semibold text-white/80 mb-2">Your Portfolio</h2>
-      <p className="text-gray-400 text-sm mb-6">Your assets and yield performance</p>
+      <h2 className="text-3xl font-semibold text-white/80 mb-2">
+        Your Portfolio
+      </h2>
+      <p className="text-gray-400 text-sm mb-6">
+        Your assets and yield performance
+      </p>
 
       {/* Wallet Section */}
       <div className="bg-gray-800/60 rounded-xl p-4 flex items-center justify-between">
@@ -59,14 +75,18 @@ const Portfolio = ({
       <div className="grid grid-cols-2 gap-6">
         <div className="bg-gray-800/60 rounded-xl p-4 flex flex-col items-start">
           <span className="text-gray-400 text-sm">STT Balance</span>
-          <span className="text-xl text-white">{sttBalance.toLocaleString()} STT</span>
+          <span className="text-xl text-white">
+            {sttBalance.toLocaleString()} STT
+          </span>
         </div>
 
         <div className="bg-gray-800/60 rounded-xl p-4 flex flex-col items-start">
           <span className="text-gray-400 text-sm">stSTT Balance</span>
           <span className="text-xl text-white">
             {stSttBalance.toLocaleString()} stSTT{" "}
-            <span className="text-gray-400 text-sm">(~{stSttEquivalent.toLocaleString()} STT)</span>
+            <span className="text-gray-400 text-sm">
+              (~{stSttEquivalent.toLocaleString()} STT)
+            </span>
           </span>
         </div>
       </div>
@@ -76,7 +96,9 @@ const Portfolio = ({
         <span className="text-gray-400 text-sm">Total Assets</span>
         <span className="text-xl font-semibold text-white">
           {totalAssetsStt.toLocaleString()} STT{" "}
-          <span className="text-gray-400 text-base">(${totalAssetsUsd.toLocaleString()})</span>
+          <span className="text-gray-400 text-base">
+            (${totalAssetsUsd.toLocaleString()})
+          </span>
         </span>
       </div>
 
@@ -92,8 +114,9 @@ const Portfolio = ({
           </div>
         </div>
       </div>
-    </motion.div>
-  )
-}
 
-export default Portfolio
+    </motion.div>
+  );
+};
+
+export default Portfolio;
