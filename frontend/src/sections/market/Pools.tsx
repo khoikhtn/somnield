@@ -38,21 +38,21 @@ export default Pools;
 // Mock pool data
   const pools = [
     {
-      tokenPair: "PT / stSTT",
+      tokenPair: "PT-stSTT / STT",
       address: "0x1234...abcd",
       liquidity: "$45.7M",
       volume24h: "$3.2M",
       apy: "5.4%",
     },
     {
-      tokenPair: "YT / stSTT",
+      tokenPair: "PT-stSTT / USDC",
       address: "0xabcd...5678",
       liquidity: "$28.1M",
       volume24h: "$1.8M",
       apy: "4.9%",
     },
     {
-      tokenPair: "PT / YT",
+      tokenPair: "STT / stSTT",
       address: "0x9876...cdef",
       liquidity: "$12.3M",
       volume24h: "$620K",

@@ -61,19 +61,12 @@ export default Position;
 // Mock data
 const lpPositions = [
   {
-    title: "PT/stSTT Pool",
+    title: "PT-stSTT / STT Pool",
     Balance: "250 LP Tokens",
     "Share of Pool": "1.25%",
     "Current Value": "$1,200",
     "Fees Earned": "$35",
-  },
-  {
-    title: "YT/stSTT Pool",
-    Balance: "120 LP Tokens",
-    "Share of Pool": "0.8%",
-    "Current Value": "$640",
-    "Fees Earned": "$12",
-  },
+  }
 ];
 
 const ptPositions = [

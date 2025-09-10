@@ -2,6 +2,7 @@ export { default as Container } from "./Container";
 export { default as Button } from "./Button";
 export { default as GlowBackground } from "./GlowBackground";
 
+export * from "./guide";
 export * from "./header";
 export * from "./oneclick";
 export * from "./pools";

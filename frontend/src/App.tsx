@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Home, Vault, Market, PoolDetail } from './pages'
+import { Home, Vault, Market, PoolDetail, Guide } from './pages'
 import Layout from './Layout'
+import LayoutGuide from './LayoutGuide'
 import { ScrollToTop } from './utils'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { wagmiConfig } from './wagmi'
@@ -25,10 +26,13 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
-                <Route path="/guide" element={<></>} />
                 <Route path="/vault" element={<Vault />} />
                 <Route path="/market" element={<Market />} />
                 <Route path="pools/:pair/:address" element={<PoolDetail />} />
+              </Route>
+
+              <Route path="/guide" element={<LayoutGuide />}>
+                <Route path="/guide" element={<Guide />} />
               </Route>
             </Routes>
 

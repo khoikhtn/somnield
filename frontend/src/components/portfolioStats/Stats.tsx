@@ -16,7 +16,7 @@ const Stats = ({
 }: StatsProps) => {
 
   // Exchange rate
-  const exchangeRateRaw = getVaultExchangeRate()
+  const { data: exchangeRateRaw } = getVaultExchangeRate();
   const exchangeRate = exchangeRateRaw ? Number(exchangeRateRaw) / 1e18 : 1
 
   return (
