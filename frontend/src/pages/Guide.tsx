@@ -15,11 +15,8 @@ const Guide = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const stage = Number(searchParams.get("stage") || 0);
 
-  const [currentStage, setCurrentStage] = useState(stage);
-
   const goToStage = (newStage: number) => {
     setSearchParams({ stage: String(newStage) });
-    setCurrentStage(newStage); // update only after transition
   };
 
   const steps = [

@@ -81,7 +81,7 @@ const Banner = () => {
             Unlock your yield potential on Somnia - the fastest blockchain in the world
           </p>
 
-          <Button text="Get Started" hasChevron={true} className="mb-20" padding="px-2 py-3.5" path="/about"/>
+          <Button text="Explore Guide" hasChevron={true} className="mb-20" padding="px-2 py-3.5" path="/guide"/>
         </div>
       </div>
     </Container>
