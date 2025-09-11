@@ -1,14 +1,14 @@
-interface LevelBoxProps {
-  level: number;
+interface StageBoxProps {
+  stage: number;
   name: string;
   desc: string;
   src: string;
-  goToLevel?: (level: number) => void;
+  goToStage?: (stage: number) => void;
 }
 
-const LevelBox = ({ level, name, desc, src, goToLevel }: LevelBoxProps) => {
+const StageBox = ({ stage, name, desc, src, goToStage }: StageBoxProps) => {
   const handleClick = () => {
-    goToLevel?.(level);
+    goToStage?.(stage);
   };
 
   return (
@@ -30,12 +30,12 @@ const LevelBox = ({ level, name, desc, src, goToLevel }: LevelBoxProps) => {
       {/* Header */}
       <div className="flex items-center font-saira w-full mb-4">
         <div className="text-4xl font-semibold text-blue-400 w-10 text-center">
-          {level}
+          {stage}
         </div>
 
         <div className="flex flex-col justify-between ml-1 leading-tight">
           <span className="text-xs uppercase text-gray-400 tracking-wider">
-            Level {level}
+            Stage {stage}
           </span>
           <span className="text-sm font-semibold text-white tracking-wide">
             {name}
@@ -54,4 +54,4 @@ const LevelBox = ({ level, name, desc, src, goToLevel }: LevelBoxProps) => {
   );
 };
 
-export default LevelBox;
+export default StageBox;

@@ -1,12 +1,12 @@
-import { Container, LevelBox, GlowBackground } from "@components";
+import { Container, StageBox, GlowBackground } from "@components";
 
-import mascot_1 from "@assets/guide/mascot_1.png";
-import mascot_2 from "@assets/guide/mascot_2.png";
-import mascot_3 from "@assets/guide/mascot_3.png";
-import mascot_4 from "@assets/guide/mascot_4.png";
-import mascot_5 from "@assets/guide/mascot_5.png";
+import mascot_1 from "@assets/guide/gettingStarted/mascot_1.png";
+import mascot_2 from "@assets/guide/gettingStarted/mascot_2.png";
+import mascot_3 from "@assets/guide/gettingStarted/mascot_3.png";
+import mascot_4 from "@assets/guide/gettingStarted/mascot_4.png";
+import mascot_5 from "@assets/guide/gettingStarted/mascot_5.png";
 
-const levels = [
+const stages = [
   {
     src: mascot_1,
     label: "Vault Deposit",
@@ -36,10 +36,10 @@ const levels = [
 
 
 interface GettingStartedProps {
-  goToLevel: (level: number) => void;
+  goToStage: (stage: number) => void;
 }
 
-const GettingStarted = ({ goToLevel }: GettingStartedProps) => {
+const GettingStarted = ({ goToStage }: GettingStartedProps) => {
   return (
     <Container className="relative" background="bg-black">
 
@@ -59,13 +59,13 @@ const GettingStarted = ({ goToLevel }: GettingStartedProps) => {
         </p>
 
         <div className="flex flex-wrap justify-center gap-8 mt-8">
-          {levels.map((item, idx) => (
-            <LevelBox
-              level={idx + 1}
+          {stages.map((item, idx) => (
+            <StageBox
+              stage={idx + 1}
               name={item.label}
               desc={item.desc}
               src={item.src}
-              goToLevel={goToLevel}
+              goToStage={goToStage}
             />
           ))}
         </div>
