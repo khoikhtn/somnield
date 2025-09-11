@@ -8,8 +8,8 @@ export * from "./oneclick";
 export * from "./pools";
 export * from "./portfolioStats";
 export * from "./positionSplitting";
-export * from "./stats"
-export * from "./swapchart"
-export * from "./trackDP"
-export * from "./vaultMarket"
+export * from "./stats";
+export * from "./swapchart";
+export * from "./trackDP";
+export * from "./vaultMarket";
 export * from "./whySomnield";
