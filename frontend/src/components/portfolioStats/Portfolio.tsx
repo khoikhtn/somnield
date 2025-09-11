@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useAccount } from "wagmi";
-import { getSTTBalance, getStSttBalance, getVaultExchangeRate } from "@hooks/read";
+import { useSTTBalance, useStSttBalance, useVaultExchangeRate } from "@hooks/read";
 import { useDeposit, useWithdraw } from "@hooks/write";
 
 interface PortfolioProps {
@@ -16,9 +16,9 @@ const Portfolio = ({ sttPriceUsd }: PortfolioProps) => {
     : "Not connected";
 
   // STT, stSTT balances & Exchange rate
-  const { data: sttBalanceData, refetch: refetchSttBalance } = getSTTBalance(walletAddress);
-  const { data: stSttBalanceRaw, refetch: refetchStSttBalance } = getStSttBalance(walletAddress);
-  const { data: exchangeRateRaw, refetch: refetchExchangeRate } = getVaultExchangeRate();
+  const { data: sttBalanceData, refetch: refetchSttBalance } = useSTTBalance(walletAddress);
+  const { data: stSttBalanceRaw, refetch: refetchStSttBalance } = useStSttBalance(walletAddress);
+  const { data: exchangeRateRaw, refetch: refetchExchangeRate } = useVaultExchangeRate();
 
   // Hooks to detect deposit/withdraw success
   const { isSuccess: isDepositSuccess } = useDeposit();
@@ -58,12 +58,8 @@ const Portfolio = ({ sttPriceUsd }: PortfolioProps) => {
       className="flex-3 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800"
     >
       {/* Header */}
-      <h2 className="text-3xl font-semibold text-white/80 mb-2">
-        Your Portfolio
-      </h2>
-      <p className="text-gray-400 text-sm mb-6">
-        Your assets and yield performance
-      </p>
+      <h2 className="text-3xl font-semibold text-white/80 mb-2">Your Portfolio</h2>
+      <p className="text-gray-400 text-sm mb-6">Your assets and yield performance</p>
 
       {/* Wallet Section */}
       <div className="bg-gray-800/60 rounded-xl p-4 flex items-center justify-between">
@@ -75,9 +71,7 @@ const Portfolio = ({ sttPriceUsd }: PortfolioProps) => {
       <div className="grid grid-cols-2 gap-6">
         <div className="bg-gray-800/60 rounded-xl p-4 flex flex-col items-start">
           <span className="text-gray-400 text-sm">STT Balance</span>
-          <span className="text-xl text-white">
-            {sttBalance.toLocaleString()} STT
-          </span>
+          <span className="text-xl text-white">{sttBalance.toLocaleString()} STT</span>
         </div>
 
         <div className="bg-gray-800/60 rounded-xl p-4 flex flex-col items-start">
@@ -96,9 +90,7 @@ const Portfolio = ({ sttPriceUsd }: PortfolioProps) => {
         <span className="text-gray-400 text-sm">Total Assets</span>
         <span className="text-xl font-semibold text-white">
           {totalAssetsStt.toLocaleString()} STT{" "}
-          <span className="text-gray-400 text-base">
-            (${totalAssetsUsd.toLocaleString()})
-          </span>
+          <span className="text-gray-400 text-base">(${totalAssetsUsd.toLocaleString()})</span>
         </span>
       </div>
 
@@ -114,7 +106,6 @@ const Portfolio = ({ sttPriceUsd }: PortfolioProps) => {
           </div>
         </div>
       </div>
-
     </motion.div>
   );
 };

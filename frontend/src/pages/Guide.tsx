@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   GettingStarted,

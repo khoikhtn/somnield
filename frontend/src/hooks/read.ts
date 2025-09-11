@@ -2,7 +2,7 @@ import { useReadContract, useBalance } from "wagmi"
 import { stSTTContract, VaultContract, PTContract, YTContract } from "@contracts"
 
 // Get STT balance
-export const getSTTBalance = (walletAddress?: string) => {
+export const useSTTBalance = (walletAddress?: string) => {
   return useBalance({ 
     address: walletAddress as `0x${string}` | undefined,
     query: { enabled: Boolean(walletAddress) },
@@ -10,7 +10,7 @@ export const getSTTBalance = (walletAddress?: string) => {
 }
 
 // Get stSTT balance
-export const getStSttBalance = (walletAddress?: string) => {
+export const useStSttBalance = (walletAddress?: string) => {
   return useReadContract({
     ...stSTTContract,
     functionName: "balanceOf",
@@ -20,7 +20,7 @@ export const getStSttBalance = (walletAddress?: string) => {
 }
 
 // Get vault exchange rate
-export const getVaultExchangeRate = () => {
+export const useVaultExchangeRate = () => {
   return useReadContract({
     ...VaultContract,
     functionName: "exchangeRate",
@@ -28,7 +28,7 @@ export const getVaultExchangeRate = () => {
 }
 
 // Get PTstSTT balance
-export const getPTBalance = (walletAddress?: string) => {
+export const usePTBalance = (walletAddress?: string) => {
   return useReadContract({
     ...PTContract,
     functionName: "balanceOf",
@@ -37,8 +37,8 @@ export const getPTBalance = (walletAddress?: string) => {
   })
 }
 
-// Get PTstSTT balance
-export const getYTBalance = (walletAddress?: string) => {
+// Get YTstSTT balance
+export const useYTBalance = (walletAddress?: string) => {
   return useReadContract({
     ...YTContract,
     functionName: "balanceOf",

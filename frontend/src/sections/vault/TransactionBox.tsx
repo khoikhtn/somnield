@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useAccount } from "wagmi"
 import { Container, GlowBackground } from "@components"
-import { getSTTBalance, getStSttBalance, getVaultExchangeRate } from "@hooks/read"
+import { useSTTBalance, useStSttBalance, useVaultExchangeRate } from "@hooks/read"
 import { useDeposit, useWithdraw } from "@hooks/write"
 import { toast } from "react-hot-toast"
 
@@ -15,15 +15,15 @@ const TransactionBox = () => {
   const { withdraw, isPending: isWithdrawPending, isLoading: isWithdrawLoading, isSuccess: isWithdrawSuccess } = useWithdraw()
 
   // Exchange rate
-  const { data: exchangeRateRaw, refetch: refetchExchangeRate } = getVaultExchangeRate()
+  const { data: exchangeRateRaw, refetch: refetchExchangeRate } = useVaultExchangeRate()
   const exchangeRate = exchangeRateRaw ? Number(exchangeRateRaw) / 1e18 : 1
 
   // STT balance
-  const { data: sttBalanceData, refetch: refetchSttBalance } = getSTTBalance(walletAddress)
+  const { data: sttBalanceData, refetch: refetchSttBalance } = useSTTBalance(walletAddress)
   const sttBalance = Number(sttBalanceData?.formatted ?? 0)
 
   // stSTT balance
-  const { data: stSTTBalanceRaw, refetch: refetchStSttBalance } = getStSttBalance(walletAddress)
+  const { data: stSTTBalanceRaw, refetch: refetchStSttBalance } = useStSttBalance(walletAddress)
   const stSttBalance = stSTTBalanceRaw
     ? Number(stSTTBalanceRaw) / 1e18
     : 0
@@ -46,8 +46,8 @@ const TransactionBox = () => {
     inputAmount <= 0 ||
     inputAmount > maxBalance
 
-  let inputToken = mode === "deposit" ? "STT" : "stSTT"
-  let outputToken = mode === "deposit" ? "stSTT" : "STT"
+  const inputToken = mode === "deposit" ? "STT" : "stSTT"
+  const outputToken = mode === "deposit" ? "stSTT" : "STT"
 
   const handleConfirm = async () => {
     try {
@@ -75,7 +75,7 @@ const TransactionBox = () => {
       refetchExchangeRate()
       setAmount("")
     }
-  }, [isDepositSuccess])
+  }, [isDepositSuccess, refetchSttBalance, refetchStSttBalance, refetchExchangeRate])
 
   useEffect(() => {
     if (isWithdrawSuccess) {
@@ -85,7 +85,7 @@ const TransactionBox = () => {
       refetchExchangeRate()
       setAmount("")
     }
-  }, [isWithdrawSuccess])
+  }, [isWithdrawSuccess, refetchSttBalance, refetchStSttBalance, refetchExchangeRate])
 
   return (
     <Container

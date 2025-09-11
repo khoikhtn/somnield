@@ -1,8 +1,5 @@
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultConfig, Chain } from '@rainbow-me/rainbowkit';
-import {
-  sepolia,
-} from 'wagmi/chains';
 
 import somnia_logo from "./assets/somnia-logo.jpg";
 

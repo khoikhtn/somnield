@@ -3,7 +3,7 @@ import { useAccount } from "wagmi"
 import { motion } from "framer-motion";
 import { toast } from "react-hot-toast"
 
-import { getStSttBalance, getPTBalance, getYTBalance } from "@hooks/read"
+import { useStSttBalance, usePTBalance, useYTBalance } from "@hooks/read"
 import { useApproveStSTT, useSplit, useRecombine } from "@hooks/write"
 import ststt from "@assets/splitrecombine/ststt.png";
 
@@ -31,13 +31,13 @@ const SplitRecombine = () => {
   const { recombine, isPending: isRecombinePending, isLoading: isRecombineLoading, isSuccess: isRecombineSuccess } = useRecombine()
 
   // Balances
-  const { data: stSTTBalanceRaw, refetch: refetchStSttBalance } = getStSttBalance(walletAddress)
+  const { data: stSTTBalanceRaw, refetch: refetchStSttBalance } = useStSttBalance(walletAddress)
   const stSttBalance = stSTTBalanceRaw ? Number(stSTTBalanceRaw) / 1e18 : 0
   
-  const { data: PTBalanceRaw, refetch: refetchPTBalance } = getPTBalance(walletAddress)
+  const { data: PTBalanceRaw, refetch: refetchPTBalance } = usePTBalance(walletAddress)
   const PTBalance = PTBalanceRaw ? Number(PTBalanceRaw) / 1e18 : 0
 
-  const { data: YTBalanceRaw, refetch: refetchYTBalance } = getYTBalance(walletAddress)
+  const { data: YTBalanceRaw, refetch: refetchYTBalance } = useYTBalance(walletAddress)
   const YTBalance = YTBalanceRaw ? Number(YTBalanceRaw) / 1e18 : 0
 
   const maxRecombine = Math.min(PTBalance, YTBalance)
@@ -58,7 +58,7 @@ const SplitRecombine = () => {
       ? "0 PT + 0 YT"
       : "0 stSTT";
 
-  let inputToken = mode === "split" ? selectedToken.coin : "PT + YT";
+  const inputToken = mode === "split" ? selectedToken.coin : "PT + YT";
 
   const handleConfirm = async () => {
     try {
@@ -115,7 +115,7 @@ const SplitRecombine = () => {
       refetchYTBalance()
       setAmount("")
     }
-  }, [isSplitSuccess])
+  }, [isSplitSuccess, refetchStSttBalance, refetchPTBalance, refetchYTBalance])
 
   useEffect(() => {
     if (isRecombineSuccess) {
@@ -125,7 +125,8 @@ const SplitRecombine = () => {
       refetchYTBalance()
       setAmount("")
     }
-  }, [isRecombineSuccess])
+  }, [isRecombineSuccess, refetchStSttBalance, refetchPTBalance, refetchYTBalance])
+
 
   return (
     <motion.div 
