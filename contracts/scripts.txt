@@ -16,19 +16,19 @@ npx hardhat ignition deploy ./ignition/modules/SomnieldModule.ts \
 
 # Read PT and YT addresses (Copy Vault and Splitte's address into .env first)
 
-npx hardhat run scripts/getPTYTaddresses.ts --network localhost
+npx hardhat run scripts/getPTYTaddresses.ts --network shannon
 
 ---------------------------------------------------------------------
 
 # Read Vault and Splitter's balance
 
-npx hardhat run scripts/balanceChecker.ts --network localhost
+npx hardhat run scripts/balanceChecker.ts --network shannon
 
 ---------------------------------------------------------------------
 
 # Fund Vault and Splitter contract with native token
 
-npx hardhat run scripts/fundVaultSplitter.ts --network localhost
+npx hardhat run scripts/fundVaultSplitter.ts --network shannon
 
 ---------------------------------------------------------------------
 

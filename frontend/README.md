@@ -1,54 +1,41 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the **frontend application** for Somnield, the comprehensive yield platform built on Somnia network. The frontend provides an intuitive interface to interact with the **Vault** and **Market** features of the platform.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ⚡ Getting Started
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+#### 1. Navigate to the frontend directory
+```bash
+cd frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+#### 2. Install dependencies
+```bash
+npm install
 ```
+
+#### 3. Run the Development Server
+```bash
+npm run dev
+```
+---
+
+## ⚙️ Configuration
+Before running the frontend, ensure the following configuration settings are updated:
+#### 1. Environment variables
+- Create a `.env` file based on the `.env.example` and configure the necessary variables
+  ```bash
+  VITE_WALLETCONNECT_PROJECT_ID=
+  ```
+
+#### 2. Deployed Contracts
+
+- To enable the frontend to interact with the Shannon blockchain, make sure that **all ABIs and contract addresses are properly defined** in the `src/contracts` folder.  
+<br>
+
+- You can either redeploy the contracts and manually update the `"address"` field in each corresponding `.json` file.
+<br>
+
+- Or use the built-in script `exportABIs.ts` provided in the [contracts module](../contracts/README.md) to automatically export and update them.  

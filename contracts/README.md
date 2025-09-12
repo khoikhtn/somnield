@@ -1,57 +1,86 @@
-# Sample Hardhat 3 Beta Project (`mocha` and `ethers`)
+# Contracts
 
-This project showcases a Hardhat 3 Beta project using `mocha` for tests and the `ethers` library for Ethereum interactions.
+This folder contains the **smart contracts** for Somnield, the comprehensive yield platform built on the **Somnia network**.  The contracts define the core logic behind the platform, including asset deposits, yield tokenization, and trading mechanisms that power the **Vault** and **Market** features.
 
-To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide](https://hardhat.org/docs/getting-started#getting-started-with-hardhat-3). To share your feedback, join our [Hardhat 3 Beta](https://hardhat.org/hardhat3-beta-telegram-group) Telegram group or [open an issue](https://github.com/NomicFoundation/hardhat/issues/new) in our GitHub issue tracker.
+---
 
-## Project Overview
+## 🚀 Deployment
 
-This example project includes:
+- This project utilized Hardhat Ignition for the deployment process. For further insight, please refer to their official [documentation](https://hardhat.org/ignition/docs/getting-started#overview).
+<br>
 
-- A simple Hardhat configuration file.
-- Foundry-compatible Solidity unit tests.
-- TypeScript integration tests using `mocha` and ethers.js
-- Examples demonstrating how to connect to different types of networks, including locally simulating OP mainnet.
+- The project includes 5 contracts to be deployed:
+  - stSTT 
+  - Vault
+  - Splitter
+  - PT Token (deployed with Splitter)
+  - YT Token (deployed with Splitter)
+<br>
 
-## Usage
+- For **quick deployments**, run this script:
+  ```bash
+  npx hardhat ignition deploy ./ignition/modules/SomnieldModule.ts \
+  --network shannon \
+  --parameters ignition/parameters.json
+  ```
 
-### Running Tests
+- For parameters configuration, make your changes in `parameters.json` file:
+  ```bash
+  {
+    "SomnieldModule": {
+      "oracle": <ORACLE_ADDRESS>,
+      "maturity": <MATURITY_DATE>
+    }
+  }
+  ```
+- For chains configuration, make your changes in `hardhat.config.ts` file.
+---
 
-To run all the tests in the project, execute the following command:
+## 🌟 Built-in Scripts
 
-```shell
-npx hardhat test
-```
+#### 1. Configure Hardhat Keystore Keys
+- To deploy and interact with contracts on the **Shannon (Somnia Testnet)**, you need to set your RPC endpoint and private key in Hardhat’s keystore.  
+<br>
+- Run the following commands:  
+  ```bash
+  npx hardhat keystore set SHANNON_RPC_URL
+  npx hardhat keystore set SHANNON_PRIVATE_KEY
+  ```
 
-You can also selectively run the Solidity or `mocha` tests:
+#### 2. Deployment script
+- For a quick contract deployment, use the following command:
+  ```bash
+  npx hardhat ignition deploy ./ignition/modules/SomnieldModule.ts \
+  --network shannon \
+  --parameters ignition/parameters.json
+  ```
 
-```shell
-npx hardhat test solidity
-npx hardhat test mocha
-```
+#### 3. Retrieve PT and YT Addresses
+- To fetch the deployed PT and YT token addresses, run:
+  ```bash
+  npx hardhat run scripts/getPTYTaddresses.ts --network shannon
+  ```
 
-### Make a deployment to Sepolia
+#### 4. Fund Vault and Splitter Contracts
+- Both the **Vault** and **Splitter** contracts require STT tokens to process refunds for users. To fund these contracts, run:
+  ```bash
+  npx hardhat run scripts/fundVaultSplitter.ts --network shannon
+  ```
 
-This project includes an example Ignition module to deploy the contract. You can deploy this module to a locally simulated chain or to Sepolia.
+#### 5. Export ABIs and Contract Addresses to the Frontend
+- The **Frontend module** requires both ABIs and contract addresses to interact with the blockchain. To streamline this process, you can use the export script instead of updating them manually
+<br>
 
-To run the deployment to a local chain:
+- Add your deployed contract addresses to the `.env` file:
+  ```bash
+  VAULT_ADDRESS=
+  SPLITTER_ADDRESS=
+  STSTT_ADDRESS=
+  PT_ADDRESS=
+  YT_ADDRESS=
+  ```
 
-```shell
-npx hardhat ignition deploy ignition/modules/Counter.ts
-```
-
-To run the deployment to Sepolia, you need an account with funds to send the transaction. The provided Hardhat configuration includes a Configuration Variable called `SEPOLIA_PRIVATE_KEY`, which you can use to set the private key of the account you want to use.
-
-You can set the `SEPOLIA_PRIVATE_KEY` variable using the `hardhat-keystore` plugin or by setting it as an environment variable.
-
-To set the `SEPOLIA_PRIVATE_KEY` config variable using `hardhat-keystore`:
-
-```shell
-npx hardhat keystore set SEPOLIA_PRIVATE_KEY
-```
-
-After setting the variable, you can run the deployment with the Sepolia network:
-
-```shell
-npx hardhat ignition deploy --network sepolia ignition/modules/Counter.ts
-```
+- Run the export script:
+  ```bash
+  npx hardhat run scripts/exportABIs.ts
+  ```

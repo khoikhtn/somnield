@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import blue_dots from '@assets/whysomnield/blue_dots.png';
 import somnia_icon from "@assets/whysomnield/somnia_logo.jpg";
-import yield_icon from "@assets/whysomnield/yield_icon.webp";
+import yield_icon from "@assets/whysomnield/temp.png";
 import security_icon from "@assets/whysomnield/security.png";
 
 const WhySomnield = () => {

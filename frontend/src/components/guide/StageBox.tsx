@@ -18,7 +18,7 @@ const StageBox = ({ stage, name, desc, src, goToStage }: StageBoxProps) => {
       className="
         text-left
         flex flex-col w-56 min-h-[220px] rounded-lg border border-white/20 
-        bg-black/50 p-4 z-10
+        bg-black/50 p-4 z-20
         transition-all duration-300 ease-out
         hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/20
         hover:scale-105 hover:bg-black/70

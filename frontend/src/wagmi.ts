@@ -31,8 +31,6 @@ const hardhat = {
   },
 } as const satisfies Chain;
 
-
-
 export const wagmiConfig = getDefaultConfig({
   appName: 'Somnield',
   projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID,
