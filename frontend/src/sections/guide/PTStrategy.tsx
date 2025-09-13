@@ -26,7 +26,8 @@ const PTStrategy = () => {
             <span className="font-bold" style={{ color: "#1BDEBF" }}>
               Principal Tokens (PT)
             </span>{" "}
-            can be traded on Pendle’s AMM, where their price shifts based on market activity.
+            can be traded on <span className="font-bold text-white">Somnield Market</span>, where their price 
+            shifts based on market activity.
           </p>
 
           <div className="flex justify-center mb-20">
@@ -153,7 +154,7 @@ const PTStrategy = () => {
             <span className="font-bold" style={{ color: "#1BDEBF" }}>
               PT
             </span>{" "}
-            on Pendle, the fixed rate moves up and down. If you wait and enter when{" "}
+            on Somnield, the fixed rate moves up and down. If you wait and enter when{" "}
             <span className="font-bold" style={{ color: "#1BDEBF" }}>
               PT
             </span>{" "}
