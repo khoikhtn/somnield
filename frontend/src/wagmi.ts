@@ -17,26 +17,24 @@ const shannon = {
   }
 } as const satisfies Chain;
 
-const hardhat = {
-  id: 31337,
-  name: "Hardhat",
-  iconUrl: "",
-  iconBackground: "",
-  nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
-  rpcUrls: {
-    default: { http: ["http://127.0.0.1:8545/"] },
-  },
-  blockExplorers: {
-    default: { name: "Etherscan (local)", url: "http://127.0.0.1:8545/" },
-  },
-} as const satisfies Chain;
+// const hardhat = {
+//   id: 31337,
+//   name: "Hardhat",
+//   iconUrl: "",
+//   iconBackground: "",
+//   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+//   rpcUrls: {
+//     default: { http: ["http://127.0.0.1:8545/"] },
+//   },
+//   blockExplorers: {
+//     default: { name: "Etherscan (local)", url: "http://127.0.0.1:8545/" },
+//   },
+// } as const satisfies Chain;
 
 export const wagmiConfig = getDefaultConfig({
   appName: 'Somnield',
   projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID,
   chains: [
-    shannon,
-    hardhat
+    shannon
   ],
 })
-

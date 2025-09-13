@@ -143,6 +143,18 @@ const TransactionBox = () => {
               onChange={(e) => setAmount(e.target.value)}
               className="flex-1 bg-transparent text-white text-lg outline-none font-medium z-1"
             />
+            <div className="flex items-center gap-5 text-xs text-gray-500">
+              <span>
+                Balance: {maxBalance.toLocaleString()} {inputToken}
+              </span>
+              <button
+                type="button"
+                onClick={() => setAmount(maxBalance.toString())}
+                className="text-blue-400 underline hover:text-blue-300"
+              >
+                Max
+              </button>
+            </div>
           </div>
 
           {/* Output */}

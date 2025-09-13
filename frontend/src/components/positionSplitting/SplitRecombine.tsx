@@ -227,9 +227,18 @@ const SplitRecombine = () => {
             onChange={(e) => setAmount(e.target.value)}
             className="flex-1 bg-transparent text-white text-lg outline-none font-medium"
           />
-          <span className="text-gray-500 text-xs">
-            Balance: {maxBalance.toLocaleString()} {inputToken}
-          </span>
+          <div className="flex items-center gap-5 text-xs text-gray-500">
+            <span>
+              Balance: {maxBalance.toLocaleString()} {inputToken}
+            </span>
+            <button
+              type="button"
+              onClick={() => setAmount(maxBalance.toString())}
+              className="text-purple-400 underline hover:text-purple-300"
+            >
+              Max
+            </button>
+          </div>
         </div>
 
         {/* Output */}
