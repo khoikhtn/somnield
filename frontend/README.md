@@ -33,9 +33,7 @@ Before running the frontend, ensure the following configuration settings are upd
 #### 2. Deployed Contracts
 
 - To enable the frontend to interact with the Shannon blockchain, make sure that **all ABIs and contract addresses are properly defined** in the `src/contracts` folder.  
-<br>
 
 - You can either redeploy the contracts and manually update the `"address"` field in each corresponding `.json` file.
-<br>
 
 - Or use the built-in script `exportABIs.ts` provided in the [contracts module](../contracts/README.md) to automatically export and update them.  

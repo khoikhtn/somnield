@@ -6,13 +6,13 @@
 [![GitHub Actions][gha-badge]][gha-url] [![Telegram Chat][tg-badge]][tg-url] [![X][x-badge]][x-url]
 
 [gha-badge]: https://img.shields.io/badge/GitHub-Commits-blue?style=flat-square&logo=github
-[gha-url]: https://github.com/khoikhtn/somnield#
+[gha-url]: https://github.com/khoikhtn/somnield/commits/master/
 
 [tg-badge]: https://img.shields.io/badge/Telegram-Chat-blue?style=flat-square&logo=telegram
 [tg-url]: https://t.me/khoitm2109
 
 [x-badge]: https://img.shields.io/badge/-000000?style=flat-square&logo=x&logoColor=white
-[x-url]: ''
+[x-url]: https://x.com/somnield_somnia
 </div>
 
 ---
@@ -34,8 +34,8 @@ cd somnield
 #### 2. Modules
 The project is organized into two distinct modules, each accompanied by its own `README.md` with detailed setup instructions:
 
-- **Smart Contract Deployment**  
-- **Frontend Application Launch**   
+- **[Smart Contract Deployment](/contracts/)**  
+- **[Frontend Application Launch](/frontend/)**   
 
 ---
 
@@ -50,11 +50,11 @@ The project is organized into two distinct modules, each accompanied by its own 
 #### 3. Deployed Contracts
 - The following contracts are deployed on **Shannon (Somnia Testnet)**:
 
-  - **[Vault](URL_HERE)**  
-  - **[Splitter](URL_HERE)**  
-  - **[stSTT Token](URL_HERE)**  
-  - **[PT Token](URL_HERE)**  
-  - **[YT Token](URL_HERE)**  
+  - **[Vault](https://shannon-explorer.somnia.network/address/0x94ECC7cB44254Da2bA584C0505c4B667f65841C8)**  
+  - **[Splitter](https://shannon-explorer.somnia.network/address/0xDcD988585Be8b2Eccf25fc270015fb146CA57854)**  
+  - **[stSTT Token](https://shannon-explorer.somnia.network/address/0x2eD7a9fE5F3492d9bac83c1c53338952AfCF37B8)**  
+  - **[PT Token](https://shannon-explorer.somnia.network/address/0x402dE4d7e7460E3d3c0dF82546Fa5732aa3833B2)**  
+  - **[YT Token](https://shannon-explorer.somnia.network/address/0x45b38d09321e66580C30EF4018aE494485C7A68E)**  
 
 
 ---

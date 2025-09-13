@@ -13,7 +13,7 @@ const YTStrategy = () => {
 
       <h1 className="text-4xl font-saira items-center text-center text-white mt-5 mb-10">
         Stage 4: Longing Yield –{" "}
-        <span className="font-bold" style={{ color: '#78B4FB' }}>YT</span> Trade
+        <span className="font-bold" style={{ color: '#78B4FB' }}>YT</span> strategy
       </h1>
 
       {/* Intro section */}

@@ -7,7 +7,6 @@ This folder contains the **smart contracts** for Somnield, the comprehensive yie
 ## 🚀 Deployment
 
 - This project utilized Hardhat Ignition for the deployment process. For further insight, please refer to their official [documentation](https://hardhat.org/ignition/docs/getting-started#overview).
-<br>
 
 - The project includes 5 contracts to be deployed:
   - stSTT 
@@ -15,7 +14,6 @@ This folder contains the **smart contracts** for Somnield, the comprehensive yie
   - Splitter
   - PT Token (deployed with Splitter)
   - YT Token (deployed with Splitter)
-<br>
 
 - For **quick deployments**, run this script:
   ```bash
@@ -40,7 +38,7 @@ This folder contains the **smart contracts** for Somnield, the comprehensive yie
 
 #### 1. Configure Hardhat Keystore Keys
 - To deploy and interact with contracts on the **Shannon (Somnia Testnet)**, you need to set your RPC endpoint and private key in Hardhat’s keystore.  
-<br>
+
 - Run the following commands:  
   ```bash
   npx hardhat keystore set SHANNON_RPC_URL
@@ -69,7 +67,6 @@ This folder contains the **smart contracts** for Somnield, the comprehensive yie
 
 #### 5. Export ABIs and Contract Addresses to the Frontend
 - The **Frontend module** requires both ABIs and contract addresses to interact with the blockchain. To streamline this process, you can use the export script instead of updating them manually
-<br>
 
 - Add your deployed contract addresses to the `.env` file:
   ```bash

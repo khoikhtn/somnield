@@ -16,7 +16,7 @@ const PTStrategy = () => {
         <span className="font-bold" style={{ color: "#1BDEBF" }}>
           PT
         </span>{" "}
-        approach
+        strategy
       </h1>
 
       {/* Intro Section */}
