@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 const PoolTitle = () => {
   const { pair, address } = useParams();
 
+  const decodedPair = pair?.replace("__", " / ").toUpperCase();
+
   return (
     <Container className="relative py-0 pt-20" background="bg-black">
       <h2 className="text-3xl font-saira mt-3 uppercase text-white/80">
-        {pair?.toUpperCase()}
+        {decodedPair?.toUpperCase()}
       </h2>
 
       {address && (

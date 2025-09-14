@@ -11,9 +11,9 @@ interface PoolBoxProps {
 const PoolBox = ({ tokenPair, address, liquidity, volume24h, apy }: PoolBoxProps) => {
   
   const pairSlug = tokenPair
-    .replace(/\s+/g, "")   
+    .replace(/\s+/g, "")
+    .replace("/", "__")
     .toLowerCase();
-
 
   return (
     <Link to={`/pools/${pairSlug}/${address}`} className="block">
