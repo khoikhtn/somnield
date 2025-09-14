@@ -3,7 +3,9 @@ import { Container, GlowBackground, PoolBox } from "@components";
 const Pools = () => {
   return (
     <Container className="relative" background="bg-black">
-      <GlowBackground />
+      <div className="relative">
+        <GlowBackground />
+      </div>
 
       <div className="flex-col gap-5 px-5 py-10 mt-10 lg:flex-row lg:items-center bg-dark-transparent rounded-2xl">
         <h2 className="text-3xl lg:text-5xl mb-15 leading-snug text-center tracking-widest text-white/80 font-saira">

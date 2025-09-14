@@ -11,7 +11,6 @@ interface PoolBoxProps {
 const PoolBox = ({ tokenPair, address, liquidity, volume24h, apy }: PoolBoxProps) => {
   
   const pairSlug = tokenPair
-    .replace(/\//g, "-")   
     .replace(/\s+/g, "")   
     .toLowerCase();
 
