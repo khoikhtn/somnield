@@ -45,7 +45,7 @@ The project is organized into two distinct modules, each accompanied by its own 
 - Explore Somnield live at: [https://somnield-finance.netlify.app/](https://somnield-finance.netlify.app/)
 
 #### 2. Resources
-- All design assets and materials used in this project are available in this [Drive]().
+- All design assets and materials used in this project are available in this [Drive](https://drive.google.com/drive/folders/1JsG9pJur7jZ7qUDuKo2s5URznNFu5aGh?usp=sharing).
 
 #### 3. Deployed Contracts
 - The following contracts are deployed on **Shannon (Somnia Testnet)**:
