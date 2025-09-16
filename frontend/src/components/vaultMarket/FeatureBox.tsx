@@ -10,7 +10,7 @@ interface FeatureBoxProps {
 
 const FeatureBox = ({ title, description, image, link, color }: FeatureBoxProps) => {
   return (
-    <div className="flex-1 flex flex-col items-center text-center px-5 py-20 rounded-2xl bg-dark-transparent">
+    <div className="flex-1 flex flex-col items-center text-center px-5 py-20 rounded-2xl bg-dark-transparent border-1 border-gray-500">
       <div className="w-32 h-32 rounded-xl mb-15 flex items-center justify-center border border-white bg-gray-800/50">
         <img
           src={image}
