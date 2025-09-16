@@ -20,7 +20,7 @@ const data = [
 
 const Chart = () => {
   const { pair } = useParams(); // e.g. "pt-ststt"
-  const [base, quote] = pair ? pair.split("-") : ["TokenA", "TokenB"];
+  const [base, quote] = pair ? pair.split("__") : ["TokenA", "TokenB"];
 
   return (
     <div className="flex-2 flex flex-col font-saira gap-6 p-8 rounded-2xl bg-gray-900/70 border border-gray-800">

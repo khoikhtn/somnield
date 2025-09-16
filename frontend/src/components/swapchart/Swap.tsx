@@ -5,7 +5,7 @@ const Swap = () => {
   const { pair } = useParams<{ pair: string }>();
 
   // Extract tokens from slug (pt-ststt → ["pt", "ststt"])
-  const tokens = pair?.split("-") || [];
+  const tokens = pair?.split("__") || [];
   const [fromToken, setFromToken] = useState(tokens[0]?.toUpperCase() || "TOKENA");
   const [toToken, setToToken] = useState(tokens[1]?.toUpperCase() || "TOKENB");
 
